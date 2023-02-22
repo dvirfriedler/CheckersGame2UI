@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "YC1xo2GikSCEyKPsNJq+Hhs8BQyfB4zcrN/0ccRslFKx0IkfWEI5k2C619PqWlDb3eJ7+U2WGUQ6jSQhDSMl9w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\dvirf\\Source\\Repos\\DamkaCounle\\DamkeGame-Logic\\DamkeGame-Logic\\DamkeGame-Logic.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\dvirf\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.435\\stylecop.analyzers.1.2.0-beta.435.nupkg.sha512",
+    "C:\\Users\\dvirf\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.435\\stylecop.analyzers.unstable.1.2.0.435.nupkg.sha512"
+  ],
+  "logs": []
+}
