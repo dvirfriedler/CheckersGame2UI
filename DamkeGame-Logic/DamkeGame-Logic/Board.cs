@@ -27,11 +27,68 @@ namespace CheckersGame
             return hasPice;
         }
 
-        public void PlayMove(int sRow, int sCol, int destRow, int destCol)
+        public void DoMove(int sRow, int sCol, int destRow, int destCol)
         {
-            this.m_Borad[destRow, destCol] = this.m_Borad[sRow, sCol];
+            List<Pice> soldiesrsInTheWay = ListSoldiersInWay(sRow, sCol, destRow, destCol);
 
+            if (soldiesrsInTheWay.Count == 1)
+            {
+                removePice(soldiesrsInTheWay[0]);
+            }
+
+            this.m_Borad[sRow, sCol].m_Row = destRow;
+            this.m_Borad[sRow, sCol].m_Col = destCol;
+
+            this.m_Borad[destRow, destCol] = this.m_Borad[sRow, sCol];
             this.m_Borad[sRow, sCol] = null;
+
+        }
+
+        public List<Pice> ListSoldiersInWay(int sRow, int sCol, int destRow, int destCol)
+        {
+            List<Pice> soldiesrsInTheWay = new List<Pice>();
+
+            int currentRow = sRow;
+            int currentCol = sCol;
+
+            if (sRow == destRow)
+            {
+                for (currentCol = sCol + UpOrDown(sCol,destCol); currentCol < destCol; currentCol += UpOrDown(sCol, destCol))
+                {
+                    soldiesrsInTheWay.Add(this.m_Borad[currentRow, currentCol]);
+                }
+            }
+            else if (sCol == destCol)
+            {
+                for (currentRow = sRow + UpOrDown(sRow, destRow); currentRow < destRow; currentRow += UpOrDown(sRow, destRow))
+                {
+                    soldiesrsInTheWay.Add(this.m_Borad[currentRow, currentCol]);
+                }
+            }
+            else
+            {
+                while (currentRow != destRow && currentCol != destCol)
+                {
+                    currentCol += UpOrDown(sCol, destCol);
+                    currentRow += UpOrDown(sRow, destRow);
+                    soldiesrsInTheWay.Add(this.m_Borad[currentRow, currentCol]);
+                }
+            }
+
+            soldiesrsInTheWay.RemoveAll(item => item == null);
+            return soldiesrsInTheWay;
+        }
+
+        private int UpOrDown(int sorce, int dest)
+        {
+            int upOrDown = 1;
+
+            if (dest - sorce < 0)
+            {
+                upOrDown = -1;
+            }
+
+            return upOrDown;
         }
 
         public override string ToString()
@@ -115,6 +172,11 @@ namespace CheckersGame
                     this.m_Borad[i, j] = this.m_Player2.m_PicesList[piceNumber++];
                 }
             }
+        }
+
+        private void removePice(Pice pice)
+        {
+            this.m_Borad[pice.m_Row, pice.m_Col] = null;
         }
     }
 }

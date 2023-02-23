@@ -40,36 +40,6 @@ namespace CheckersGame
         {
             bool didMove = true;
 
-            // List<int> positions = this.CharToLocation(i_Move);
-            //
-            // int sCol = positions[0];
-            // int sRow = positions[1];
-            // int destCol = positions[2];
-            // int destRow = positions[3];
-            //
-            // if (!this.MoveTemplateIsValid(i_Move)) // Check that the move string is "**>**"
-            // {
-            //     didMove = false;
-            // }
-            // else if (!this.MoveLocationsIsValid(i_Move)) // check that the location inside the board
-            // {
-            //     didMove = false;
-            // }
-            // else if (!m_Board.HasPice(sCol, sRow) || m_Board.HasPice(destCol, destRow)) // check that the source has soldier and the destnation dont
-            // {
-            //     didMove = false;
-            // }
-            // else if (!this.MoveIsVaild(sCol, sRow, destCol, destRow)) // check the the move is vaild according to checkars rules
-            // {
-            //     didMove = false;
-            // }
-            // else
-            // {
-            //     this.m_Board.PlayMove(positions[0], positions[1], positions[2], positions[3]); //If everything was ok it will do the move
-            // }
-
-            // test end
-
             List<Tuple<int, int>> sorceAndDest = this.moveToTuppleLocationsList(i_Move);
 
             int sCol = sorceAndDest[0].Item2;
@@ -77,9 +47,11 @@ namespace CheckersGame
             int destCol = sorceAndDest[1].Item2;
             int destRow = sorceAndDest[1].Item1;
 
-            Pice sourcePice = this.m_Board.m_Borad[sRow, sCol];
-
-            if (sourcePice == null)
+            if (!this.MoveTemplateIsValid(i_Move)) // Check that the move string is "**>**"
+            {
+                didMove = false;
+            }
+            else if (this.m_Board.m_Borad[sRow, sCol] == null)
             {
                 didMove = false;
             }
@@ -93,7 +65,12 @@ namespace CheckersGame
             }
             else
             {
-                this.m_Board.PlayMove(sRow, sCol, destRow, destCol); ////If everything was ok it will do the move
+                this.m_Board.DoMove(sRow, sCol, destRow, destCol); ////If everything was ok it will do the move
+
+                if (!this.m_PlayerTurn.EatPice())
+                {
+                    this.m_PlayerTurn = PlayerTurn.Opponent;
+                }
             }
 
             return didMove;
@@ -103,7 +80,7 @@ namespace CheckersGame
         {
             bool moveIsVaild = true;
 
-            List<Pice> soldiersInTheWayList = this.ListSoldiersInWay(sCol, sRow, destCol, destRow);
+            List<Pice> soldiersInTheWayList = this.m_Board.ListSoldiersInWay(sRow, sCol, destRow, destCol);
 
             Pice sourcePice = this.m_Board.m_Borad[sRow, sCol];
 
@@ -142,7 +119,7 @@ namespace CheckersGame
         {
             bool moveIsVaild = true;
 
-            List<Pice> soldiersInTheWayList = this.ListSoldiersInWay(sCol, sRow, destCol, destRow);
+            List<Pice> soldiersInTheWayList = this.m_Board.ListSoldiersInWay(sRow, sCol, destRow, destCol);
 
             Pice sourcePice = this.m_Board.m_Borad[sRow, sCol];
 
@@ -182,55 +159,6 @@ namespace CheckersGame
             return moveIsVaild;
         }
 
-        private List<Pice> ListSoldiersInWay(int sCol, int sRow, int destCol, int destRow)
-        {
-            List<Pice> soldiesrsInTheWay = new List<Pice>();
-
-            int currentRow = sRow;
-            int currentCol = sCol;
-            while (currentRow != destRow + 1 && currentCol != destCol + 1)
-            {
-                currentCol = sCol;
-                while (currentCol != destCol + 1)
-                {
-                    if (this.m_Board.m_Borad[currentRow, currentCol] != null)
-                    {
-                        soldiesrsInTheWay.Add(this.m_Board.m_Borad[currentRow, currentCol]);
-                    }
-
-                    currentCol = 1 * UpOrDown(sCol, destCol);
-                }
-
-                currentRow += 1 * UpOrDown(sRow, destRow);
-            }
-
-          //  for (int currentRow = sRow; currentRow != destRow + 1; currentRow += 1*UpOrDown(sRow, destRow))
-          //  {
-          //      for (int currentCol = sCol; currentCol != destCol + 1; currentCol += 1 * UpOrDown(sCol, destCol))
-          //      {
-          //          if (this.m_Board.m_Borad[currentRow, currentCol] != null)
-          //          {
-          //              soldiesrsInTheWay.Add(this.m_Board.m_Borad[currentRow, currentCol]);
-          //          }
-          //      }
-          //  }
-          //
-          //  soldiesrsInTheWay.Remove(soldiesrsInTheWay[0]); // remove the pice that in borad[sCol,sRow]
-
-            return soldiesrsInTheWay;
-        }
-
-        private int UpOrDown(int sorce, int dest)
-        {
-            int upOrDown = 1;
-
-            if (dest - sorce < 0)
-            {
-                upOrDown = -1;
-            }
-
-            return upOrDown;
-        }
 
         private int distance(int sCol, int sRow, int DestCol, int DestRow)
         {

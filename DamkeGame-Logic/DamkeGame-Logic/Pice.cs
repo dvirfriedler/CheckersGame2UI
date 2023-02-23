@@ -4,7 +4,6 @@ using System.Collections.Generic;
 namespace CheckersGame
 {
 
-
     public class Pice
     {
         private string m_Symbole { get; set; }
@@ -83,7 +82,7 @@ namespace CheckersGame
                 canGo.Add(new Tuple<int, int>(this.m_Row + 2, this.m_Col - 2));
                 canGo.Add(new Tuple<int, int>(this.m_Row + 2, this.m_Col + 2));
             }
-            else if (this.m_Symbole == "0")
+            else if (this.m_Symbole == "O")
             {
                 canGo.Add(new Tuple<int, int>(this.m_Row - 1, this.m_Col - 1));
                 canGo.Add(new Tuple<int, int>(this.m_Row - 1, this.m_Col + 1));
@@ -99,7 +98,7 @@ namespace CheckersGame
                     canGo.Add(new Tuple<int, int>(i, this.m_Col - j));
                 }
 
-                for (int i = this.m_Row - 1; i < i_BoradSize; i--)
+                for (int i = this.m_Row - 1; i > 0; i--)
                 {
                     int j = 1;
                     canGo.Add(new Tuple<int, int>(i, this.m_Col + j));

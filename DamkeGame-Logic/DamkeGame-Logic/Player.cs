@@ -15,7 +15,6 @@ namespace CheckersGame
 
         public Pice m_OneMoreTurnPice = null;
 
-
         public Player(string i_Name,string m_Symbole, List<Pice> i_Pices)
         {
             this.m_Name = i_Name;
@@ -27,5 +26,14 @@ namespace CheckersGame
             get => m_Name;
         }
 
+        public Player Opponent
+        {
+            get => m_Opponent;
+        }
+
+        public bool EatPice()
+        {
+            return m_OneMoreTurnPice != null;
+        }
     }
 }
