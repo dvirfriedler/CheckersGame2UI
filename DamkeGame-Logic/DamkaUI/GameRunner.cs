@@ -14,8 +14,8 @@ namespace DamkaUI
             bool qwit = false;
             bool gameStart = false;
             Game game = null;
+            Player playerTrun = null;
             string currentMove = string.Empty;
-            
 
             while (!qwit)
             {
@@ -41,6 +41,7 @@ namespace DamkaUI
 
                 CheckersInterface.ShowBorad(game);
 
+                playerTrun = game.PlayerTurn;
                 currentMove = CheckersInterface.AskForNextMove(game);
                 //currentMove = "Ab>Ac"; //test
 

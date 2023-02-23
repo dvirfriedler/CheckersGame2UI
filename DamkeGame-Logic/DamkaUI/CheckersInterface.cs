@@ -8,9 +8,6 @@ namespace DamkaUI
 
         public static void ShowInstractions()
         {
-           
-
-
             System.Console.WriteLine("Instructions:");
             System.Console.WriteLine("In each itration each player will need to deside between 2 options:");
             System.Console.WriteLine("1. Play a game move.");
@@ -41,7 +38,7 @@ namespace DamkaUI
         {
             System.Console.WriteLine($"{i_game.m_PlayerTurn.m_Opponent.Name} was : {i_game.m_LastMove}");
             System.Console.WriteLine($"{i_game.m_PlayerTurn.Name} please enter your next Move");
-            string move = System.Console.ReadLine();
+            string move = Console.ReadLine();
             return move;
         }
 

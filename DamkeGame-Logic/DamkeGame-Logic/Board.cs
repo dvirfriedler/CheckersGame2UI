@@ -21,13 +21,13 @@ namespace CheckersGame
             this.initilaize();
         }
 
-        public bool HasPice(int i,int j)
+        public bool HasPice(int row, int col)
         {
-            bool hasPice = this.m_Borad[j, i] != null;
+            bool hasPice = this.m_Borad[row, col] != null;
             return hasPice;
         }
 
-        public void PlayMove(int sCol, int sRow, int destCol, int destRow)
+        public void PlayMove(int sRow, int sCol, int destRow, int destCol)
         {
             this.m_Borad[destRow, destCol] = this.m_Borad[sRow, sCol];
 
@@ -38,9 +38,9 @@ namespace CheckersGame
         {
             string boradString = "   ";
 
-            for (int i = 0; i < this.m_Size + 1 ; i++)
+            for (int i = 0; i < this.m_Size + 1; i++)
             {
-                for (int j = 0; j < this.m_Size +1; j++)
+                for (int j = 0; j < this.m_Size + 1; j++)
                 {
                     if ( i == 0)
                     {
@@ -88,15 +88,17 @@ namespace CheckersGame
             return boradString;
         }
 
-
         private void initilaize()
         {
             int piceNumber = 0;
 
             for (int i = 0; i < (this.m_Size / 2) - 1; i++)
             {
-                for (int j = (i+1) % 2 ; j <this.m_Size; j = j + 2)
+                for (int j = (i + 1) % 2; j < this.m_Size; j = j + 2)
                 {
+                    this.m_Player1.m_PicesList[piceNumber].m_Row = i;
+                    this.m_Player1.m_PicesList[piceNumber].m_Col = j;
+
                     this.m_Borad[i, j] = this.m_Player1.m_PicesList[piceNumber++];
                 }
             }
@@ -107,6 +109,9 @@ namespace CheckersGame
             {
                 for (int j = (i + 1) % 2; j <= this.m_Size - 1; j = j + 2)
                 {
+                    this.m_Player2.m_PicesList[piceNumber].m_Row = i;
+                    this.m_Player2.m_PicesList[piceNumber].m_Col = j;
+
                     this.m_Borad[i, j] = this.m_Player2.m_PicesList[piceNumber++];
                 }
             }
