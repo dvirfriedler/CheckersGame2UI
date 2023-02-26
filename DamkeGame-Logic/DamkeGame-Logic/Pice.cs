@@ -12,25 +12,26 @@ namespace CheckersGame
 
         private bool m_IsKing;
 
-        public int m_Col;
+        private int m_Col;
 
-        public int m_Row;
+        private int m_Row;
+
+        private int m_BoardSize;
 
         public Pice(bool isPlayerOnePice)
         {
-            m_Symbole = "O";
+           this.m_Symbole = "O";
 
-            m_TeamSymbols = "OQ";
+           m_TeamSymbols = "OQ";
 
-            if (isPlayerOnePice)
-            {
-                m_Symbole = "X";
+           if (isPlayerOnePice)
+           {
+                this.m_Symbole = "X";
 
-                m_TeamSymbols = "XK";
-            }
+                this.m_TeamSymbols = "XK";
+           }
 
-            m_IsKing = false;
-
+           this.m_IsKing = false;
         }
 
         public void SetKing()
@@ -66,13 +67,49 @@ namespace CheckersGame
 
         public bool IsAnOponnetSoldier(Pice pice) => !m_TeamSymbols.Contains(pice.m_Symbole);
 
+        public string TeamSymbols => m_TeamSymbols;
+
+        public int Col
+        {
+            get => this.m_Col;
+            set => this.m_Col = value;
+        }
+
+        public int Row
+        {
+            get => this.m_Row;
+            set
+            {
+                this.m_Row = value;
+                {
+                    if (this.m_Row == this.m_BoardSize - 1 && this.m_Symbole == "X")
+                    {
+                       this.SetKing();
+                    }
+                    else if (this.m_Row == 0 && this.m_Symbole == "O")
+                    {
+                       this.SetKing();
+                    }
+                }
+            }
+        }
+
         public bool CanEat()
         {
             return true;
         }
 
+        public Tuple<int,int> GetLocationTuple()
+        {
+            Tuple<int, int> locationTuple = new Tuple<int, int>(this.Row, this.Col);
+
+            return locationTuple;
+        }
+
         public List<Tuple<int, int>> CanGo(int i_BoradSize)
         {
+            this.m_BoardSize = i_BoradSize;
+
             List<Tuple<int, int>> canGo = new List<Tuple<int, int>>();
 
             if (this.m_Symbole == "X")

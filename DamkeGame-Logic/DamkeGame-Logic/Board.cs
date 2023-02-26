@@ -12,6 +12,8 @@ namespace CheckersGame
 
         internal Player m_Player2 = null;
 
+        public string m_LastMove = "This is the first move";
+
         public Board(int boradSize ,Player i_player1, Player i_player2)
         {
             this.m_Borad = new Pice[boradSize, boradSize];
@@ -29,15 +31,16 @@ namespace CheckersGame
 
         public void DoMove(int sRow, int sCol, int destRow, int destCol)
         {
-            List<Pice> soldiesrsInTheWay = ListSoldiersInWay(sRow, sCol, destRow, destCol);
+
+            List<Pice> soldiesrsInTheWay = this.ListSoldiersInWay(sRow, sCol, destRow, destCol);
 
             if (soldiesrsInTheWay.Count == 1)
             {
                 removePice(soldiesrsInTheWay[0]);
             }
 
-            this.m_Borad[sRow, sCol].m_Row = destRow;
-            this.m_Borad[sRow, sCol].m_Col = destCol;
+            this.m_Borad[sRow, sCol].Row = destRow;
+            this.m_Borad[sRow, sCol].Col = destCol;
 
             this.m_Borad[destRow, destCol] = this.m_Borad[sRow, sCol];
             this.m_Borad[sRow, sCol] = null;
@@ -153,8 +156,8 @@ namespace CheckersGame
             {
                 for (int j = (i + 1) % 2; j < this.m_Size; j = j + 2)
                 {
-                    this.m_Player1.m_PicesList[piceNumber].m_Row = i;
-                    this.m_Player1.m_PicesList[piceNumber].m_Col = j;
+                    this.m_Player1.m_PicesList[piceNumber].Row = i;
+                    this.m_Player1.m_PicesList[piceNumber].Col = j;
 
                     this.m_Borad[i, j] = this.m_Player1.m_PicesList[piceNumber++];
                 }
@@ -166,8 +169,8 @@ namespace CheckersGame
             {
                 for (int j = (i + 1) % 2; j <= this.m_Size - 1; j = j + 2)
                 {
-                    this.m_Player2.m_PicesList[piceNumber].m_Row = i;
-                    this.m_Player2.m_PicesList[piceNumber].m_Col = j;
+                    this.m_Player2.m_PicesList[piceNumber].Row = i;
+                    this.m_Player2.m_PicesList[piceNumber].Col = j;
 
                     this.m_Borad[i, j] = this.m_Player2.m_PicesList[piceNumber++];
                 }
@@ -176,7 +179,7 @@ namespace CheckersGame
 
         private void removePice(Pice pice)
         {
-            this.m_Borad[pice.m_Row, pice.m_Col] = null;
+            this.m_Borad[pice.Row, pice.Col] = null;
         }
     }
 }

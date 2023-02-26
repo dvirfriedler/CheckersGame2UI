@@ -18,6 +18,11 @@ namespace DamkaUI
                 testMoves.Add("Bg>De");   //// TEST
                 testMoves.Add("Fc>Ed");   //// TEST
                 testMoves.Add("Gh>Hg");   //// TEST
+                testMoves.Add("Gh>Hg");   //// TEST
+                testMoves.Add("Gh>Hg");   //// TEST
+                testMoves.Add("Gh>Hg");   //// TEST
+                testMoves.Add("Gh>Hg");   //// TEST
+
 
             }
 
@@ -70,11 +75,13 @@ namespace DamkaUI
                     currentMove = CheckersInterface.AskForNextMove(game);
                 }
 
-                while (!game.PlayMove(currentMove))
-                {
-                    CheckersInterface.NotAValidMove();
-                    currentMove = CheckersInterface.AskForNextMove(game);
-                }
+                //while (!game.PlayMove(currentMove))
+                //{
+                //    CheckersInterface.NotAValidMove();
+                //    currentMove = CheckersInterface.AskForNextMove(game);
+                //}
+
+                game.PlayRandomMove();
 
                 if (game.GameIsOver())
                 {

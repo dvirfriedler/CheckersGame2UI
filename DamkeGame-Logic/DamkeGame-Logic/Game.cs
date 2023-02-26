@@ -40,6 +40,48 @@ namespace CheckersGame
         {
             bool didMove = true;
 
+            if (!this.moveIsVaild(i_Move))
+            {
+                didMove = false;
+            }
+            else
+            {
+                List<Tuple<int, int>> sorceAndDest = this.moveToTuppleLocationsList(i_Move);
+
+                int sCol = sorceAndDest[0].Item2;
+                int sRow = sorceAndDest[0].Item1;
+                int destCol = sorceAndDest[1].Item2;
+                int destRow = sorceAndDest[1].Item1;
+
+                this.m_Board.DoMove(sRow, sCol, destRow, destCol);
+                this.m_LastMove = i_Move;
+
+                if (!this.m_PlayerTurn.EatPice())
+                {
+                    this.m_PlayerTurn = this.PlayerTurn.Opponent;
+                }
+            }
+
+            return didMove;
+        }
+
+        /// <summary>
+        /// This methode chaeck that the move is vaild according to 3 rules.
+        /// 1.Check that the move template is according to "**>**"
+        /// 2.Check that the source isn't empty and that the detstnation is empty
+        /// 3.Check that the source pice is belongs to the current player turn.
+        /// 4.Check that the destnation location is included in the set of the avilabile location of the sorcepice.
+        /// 5.Check if its avilable to eat soldiers in the way from sorce to destnation.
+        /// </summary>
+        /// <param name="sRow"></param>
+        /// <param name="sCol"></param>
+        /// <param name="destRow"></param>
+        /// <param name="destCol"></param>
+        /// <returns>return True if the move is can be done.</returns>
+        private bool moveIsVaild(string i_Move)
+        {
+            bool moveIsVaild = true;
+
             List<Tuple<int, int>> sorceAndDest = this.moveToTuppleLocationsList(i_Move);
 
             int sCol = sorceAndDest[0].Item2;
@@ -47,46 +89,25 @@ namespace CheckersGame
             int destCol = sorceAndDest[1].Item2;
             int destRow = sorceAndDest[1].Item1;
 
-            if (!this.MoveTemplateIsValid(i_Move)) // Check that the move string is "**>**"
-            {
-                didMove = false;
-            }
-            else if (this.m_Board.m_Borad[sRow, sCol] == null)
-            {
-                didMove = false;
-            }
-            else if (m_Board.HasPice(destRow, destCol))
-            {
-                didMove = false;
-            }
-            else if (!moveIsVaild2(sRow, sCol, destRow, destCol))
-            {
-                didMove = false;
-            }
-            else
-            {
-                this.m_Board.DoMove(sRow, sCol, destRow, destCol); ////If everything was ok it will do the move
-
-                if (!this.m_PlayerTurn.EatPice())
-                {
-                    this.m_PlayerTurn = PlayerTurn.Opponent;
-                }
-            }
-
-            return didMove;
-        }
-
-        private bool moveIsVaild2(int sRow, int sCol, int destRow, int destCol)
-        {
-            bool moveIsVaild = true;
-
             List<Pice> soldiersInTheWayList = this.m_Board.ListSoldiersInWay(sRow, sCol, destRow, destCol);
 
             Pice sourcePice = this.m_Board.m_Borad[sRow, sCol];
 
             Tuple<int, int> dest = new Tuple<int, int>(destRow, destCol);
 
-            if (!sourcePice.CanGo(this.m_Board.m_Size).Contains(dest))
+            if (!this.MoveTemplateIsValid(i_Move)) //// Check that the move string is "**>**"
+            {
+                moveIsVaild = false;
+            }
+            else if (this.m_Board.m_Borad[sRow, sCol] == null || this.m_Board.HasPice(destRow, destCol)) //// Check that the soyrce has Pice and the dest dont.
+            {
+                moveIsVaild = false;
+            }
+            else if (!this.PlayerTurn.TeamSymbols.Equals(sourcePice.TeamSymbols))
+            {
+                moveIsVaild = false;
+            }
+            else if (!sourcePice.CanGo(this.m_Board.m_Size).Contains(dest))
             {
                 moveIsVaild = false;
             }
@@ -115,50 +136,6 @@ namespace CheckersGame
             return moveIsVaild;
         }
 
-        private bool MoveIsVaild(int sCol, int sRow, int destCol, int destRow)
-        {
-            bool moveIsVaild = true;
-
-            List<Pice> soldiersInTheWayList = this.m_Board.ListSoldiersInWay(sRow, sCol, destRow, destCol);
-
-            Pice sourcePice = this.m_Board.m_Borad[sRow, sCol];
-
-            if (soldiersInTheWayList.Count > 1) /// There is more than one soldier in the way
-            {
-                moveIsVaild = false;
-            }
-            else if (sourcePice.IsKing) // Pice is a King
-            {
-                if (soldiersInTheWayList.Count == 1)
-                {
-                    if (!soldiersInTheWayList[0].IsAnOponnetSoldier(sourcePice)) // the soldier in the way is from the same team
-                    {
-                        moveIsVaild = false;
-                    }
-                }
-            }
-            else if (soldiersInTheWayList.Count == 1) // Pice is not a king and have one soldier in the way
-            {
-                if (!soldiersInTheWayList[0].IsAnOponnetSoldier(sourcePice)) //The pice in the way is not an Oponnent
-                {
-                    moveIsVaild = false;
-                }
-                else if (this.distance(sCol, sRow, destCol, destRow) != 2) // distance is to big for a regular soldier
-                {
-                    moveIsVaild = false;
-                }
-            }
-            else if (soldiersInTheWayList.Count == 0) // pice not a king and no soldiers in the way
-            {
-                if (this.distance(sCol, sRow, destCol, destRow) != 1) // REGULAR PICE AND TRY DO TO MORE THAN ONE STPES NOT IN THE FIRST MOVE;
-                {
-                    moveIsVaild = false;
-                }
-            }
-
-            return moveIsVaild;
-        }
-
 
         private int distance(int sCol, int sRow, int DestCol, int DestRow)
         {
@@ -172,7 +149,7 @@ namespace CheckersGame
         {
             bool vaild = true;
 
-            if(i_Move.Length != 5)
+            if (i_Move.Length != 5)
             {
                 vaild = false;
             }
@@ -267,6 +244,61 @@ namespace CheckersGame
         public Player PlayerTurn
         {
             get => this.m_PlayerTurn;
+        }
+
+        private string moveTupleToStringMove(List<Tuple<int, int>> i_MoveTupple)
+        {
+            string move = string.Empty;
+
+            move += (char)(i_MoveTupple[0].Item2 + (int)'A');
+            move += (char)(i_MoveTupple[0].Item1 + (int)'a');
+            move += ">";
+            move += (char)(i_MoveTupple[1].Item2 + (int)'A');
+            move += (char)(i_MoveTupple[1].Item1 + (int)'a');
+
+            return move;
+        }
+
+        public bool PlayRandomMove()
+        {
+            List<Pice> currentPlayerPices = m_PlayerTurn.m_PicesList;
+
+            List<string> playerAvilableMoves = new List<string>();
+        
+            Random rnd = new Random();
+
+            bool vaildMove = false;
+        
+            for (int i = 0; i < currentPlayerPices.Count; i++)
+            {
+                Pice currentPice = currentPlayerPices[i];
+        
+                List<Tuple<int, int>> canGoList = currentPice.CanGo(this.m_Board.m_Size);
+        
+                foreach (Tuple<int, int> destMove in canGoList)
+                {
+                    Tuple<int, int> source = currentPice.GetLocationTuple();
+                    List<Tuple<int, int>> fullmove = new List<Tuple<int, int>> { source, destMove };
+
+                    playerAvilableMoves.Add(moveTupleToStringMove(fullmove));
+                }
+            }
+
+            while (!vaildMove)
+            {
+                string currentMove = playerAvilableMoves[rnd.Next(playerAvilableMoves.Count)];
+                if (!moveIsVaild(currentMove))
+                {
+                    playerAvilableMoves.Remove(currentMove);
+                }
+                else
+                {
+                    PlayMove(currentMove);
+                    break;
+                }
+            }
+
+            return true;
         }
     }
 }

@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\DamkeGame-Logic",
+    "\\DamkeGame-Logic\\DamkeGame-Logic"
   ],
+  "SelectedNode": "\\DamkeGame-Logic\\DamkeGame-Logic\\Board.cs",
   "PreviewInSolutionExplorer": false
 }

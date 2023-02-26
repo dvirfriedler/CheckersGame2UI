@@ -54,14 +54,14 @@ namespace DamkaUI
 
         public static void ShowBorad(Game o_game)
         {
-            System.Console.WriteLine(o_game.m_Board.ToString());
+            Console.WriteLine(o_game.m_Board.ToString());
+            ShowLastMove(o_game);
         }
 
-        public static void ShowLastMove(string LastMove) 
+        public static void ShowLastMove(Game i_game)
         {
-            System.Console.WriteLine(LastMove);
+            System.Console.WriteLine($"{i_game.m_PlayerTurn.m_Opponent.Name} was : {i_game.m_LastMove}");
         }
-
 
         internal static void ShowLastMove(Player playerTurn, Board o_gameBorad, int turnCounter)
         {
