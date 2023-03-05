@@ -31,20 +31,30 @@ namespace CheckersGame
 
         public void DoMove(int sRow, int sCol, int destRow, int destCol)
         {
-
             List<Pice> soldiesrsInTheWay = this.ListSoldiersInWay(sRow, sCol, destRow, destCol);
+
+            Pice piceToMove = this.m_Borad[sRow, sCol];
 
             if (soldiesrsInTheWay.Count == 1)
             {
                 removePice(soldiesrsInTheWay[0]);
             }
 
-            this.m_Borad[sRow, sCol].Row = destRow;
-            this.m_Borad[sRow, sCol].Col = destCol;
+            //// CanGoTeast
+
+            Pice[,] tempBoard = this.m_Borad;
+            Pice[,] testAvilableMoves = piceToMove.CanGoTest(m_Size);
+            this.m_Borad = testAvilableMoves;
+            Console.WriteLine(this.ToString());
+            this.m_Borad = tempBoard;
+
+            ////
+
+            piceToMove.Row = destRow;
+            piceToMove.Col = destCol;
 
             this.m_Borad[destRow, destCol] = this.m_Borad[sRow, sCol];
             this.m_Borad[sRow, sCol] = null;
-
         }
 
         public List<Pice> ListSoldiersInWay(int sRow, int sCol, int destRow, int destCol)
@@ -180,6 +190,15 @@ namespace CheckersGame
         private void removePice(Pice pice)
         {
             this.m_Borad[pice.Row, pice.Col] = null;
+
+            if (m_Player1.TeamSymbols.Equals(pice.TeamSymbols))
+            {
+                m_Player1.m_PicesList.Remove(pice);
+            }
+            else
+            {
+                m_Player2.m_PicesList.Remove(pice);
+            }
         }
     }
 }

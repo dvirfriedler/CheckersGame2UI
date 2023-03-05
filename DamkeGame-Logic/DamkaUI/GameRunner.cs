@@ -67,8 +67,8 @@ namespace DamkaUI
 
                 if (test)
                 {
-                    currentMove = testMoves[testStep];
-                    testStep++;
+                   // currentMove = testMoves[testStep];
+                   // testStep++;
                 }
                 else
                 {

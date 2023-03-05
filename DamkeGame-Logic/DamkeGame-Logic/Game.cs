@@ -7,13 +7,15 @@ namespace CheckersGame
     {
         public Board m_Board { get; set; }
 
-        private Player m_Player1 { get; set; }
+        private Player m_Player1 { get; }
 
-        private Player m_Player2 { get; set; }
+        private Player m_Player2 { get; }
 
         public Player m_PlayerTurn { get; set; }
 
         public string m_LastMove { get; set; }
+
+        private int m_BoardSize { get; }
 
         public Game(string io_Player1Name = "firstPlater", string io_Plyaer2Name = "player2", int io_BoradSize = 6)
         {
@@ -34,7 +36,13 @@ namespace CheckersGame
             this.m_Board = new Board(io_BoradSize, this.m_Player1, this.m_Player2);
 
             this.m_LastMove = "This is the first move.";
+
+            m_BoardSize = io_BoradSize;
         }
+
+        public Player Player1 => this.m_Player1;
+
+        public Player Player2 => this.m_Player2;
 
         public bool PlayMove(string i_Move)
         {
@@ -99,7 +107,7 @@ namespace CheckersGame
             {
                 moveIsVaild = false;
             }
-            else if (this.m_Board.m_Borad[sRow, sCol] == null || this.m_Board.HasPice(destRow, destCol)) //// Check that the soyrce has Pice and the dest dont.
+            else if (this.m_Board.m_Borad[sRow, sCol] == null || this.m_Board.HasPice(destRow, destCol)) //// Check that the source has Pice and the dest dont.
             {
                 moveIsVaild = false;
             }
@@ -133,9 +141,16 @@ namespace CheckersGame
                 }
             }
 
+            if (CurrentPlayerCanEat())
+            {
+                if (soldiersInTheWayList.Count == 0)
+                {
+                    moveIsVaild = false;
+                }
+            }
+
             return moveIsVaild;
         }
-
 
         private int distance(int sCol, int sRow, int DestCol, int DestRow)
         {
@@ -183,7 +198,7 @@ namespace CheckersGame
 
         }
 
-        private bool MoveLocationsIsValid(String i_Move)
+        private bool MoveLocationsIsValid(string i_Move)
         {
             bool valid = true;
 
@@ -233,12 +248,22 @@ namespace CheckersGame
 
         public bool GameIsOver()
         {
-            return true;
+            bool gameIsOver = false;
+
+            if(m_Player1.m_PicesList.Count == 0 || m_Player2.m_PicesList.Count == 0)
+            {
+                gameIsOver = true;
+            }
+
+            return gameIsOver;
         }
 
-        public string GetScore()
+        public double GetScore(Player i_Player)
         {
-            return "";
+            double totalPicesCount = m_Player1.m_PicesList.Count + m_Player2.m_PicesList.Count;
+            double score = 0.5 + (double)(i_Player.m_PicesList.Count) / totalPicesCount;
+
+            return score;
         }
 
         public Player PlayerTurn
@@ -259,22 +284,171 @@ namespace CheckersGame
             return move;
         }
 
+        private Pice getPice(int row, int col)
+        {
+            return this.m_Board.m_Borad[row, col];
+        }
+
+        private List<Pice> closeEnamyList(Pice i_pice)
+        {
+            List<Pice> closeEnamyList = new List<Pice>();
+
+            Pice downLeftPice = m_Board.m_Borad[Math.Min(i_pice.Row + 1, m_BoardSize - 1), Math.Max(i_pice.Col - 1, 0)];
+            Pice downRightPice = m_Board.m_Borad[Math.Min(i_pice.Row + 1, m_BoardSize - 1), Math.Min(i_pice.Col + 1, m_BoardSize - 1)];
+            Pice upLeftPice = m_Board.m_Borad[Math.Max(i_pice.Row - 1, 0), Math.Max(i_pice.Col - 1, 0)];
+            Pice upRightPice = m_Board.m_Borad[Math.Max(i_pice.Row - 1, 0), Math.Min(i_pice.Col + 1, m_BoardSize - 1)];
+
+            if (i_pice.Symbole.Equals("X"))
+            {
+                if (i_pice.IsOpponent(downLeftPice))
+                {
+                    closeEnamyList.Add(downLeftPice);
+                }
+
+                if (i_pice.IsOpponent(downRightPice))
+                {
+                    closeEnamyList.Add(downRightPice);
+                }
+            }
+            else if (i_pice.Symbole.Equals("O"))
+            {
+                if (i_pice.IsOpponent(upLeftPice))
+                {
+                    closeEnamyList.Add(upLeftPice);
+                }
+
+                if (i_pice.IsOpponent(upRightPice))
+                {
+                    closeEnamyList.Add(upRightPice);
+                }
+            }
+            else
+            {
+                int currnetRow = i_pice.Row;
+                int currentCol = i_pice.Col;
+
+                for (currnetRow = i_pice.Row - 1; currnetRow >= 0; currnetRow--) //// Up Left
+                {
+                    upLeftPice = m_Board.m_Borad[Math.Max(currnetRow, 0), Math.Min(currentCol - 1, 0)];
+
+                    if (i_pice.IsOpponent(upLeftPice))
+                    {
+                        closeEnamyList.Add(upLeftPice);
+                        break;
+                    }
+
+                    currentCol -= 1;
+                }
+
+                currentCol = i_pice.Col;
+
+                for (currnetRow = i_pice.Row + 1; currnetRow < m_BoardSize; currnetRow++) //// down Left
+                {
+                    downLeftPice = m_Board.m_Borad[Math.Min(currnetRow, m_BoardSize - 1), Math.Max(currentCol - 1, 0)];
+
+                    if (i_pice.IsOpponent(downLeftPice))
+                    {
+                        closeEnamyList.Add(downLeftPice);
+                        break;
+                    }
+
+                    currentCol -= 1;
+                }
+
+                currentCol = i_pice.Col;
+
+                for (currnetRow = i_pice.Row - 1; currnetRow >= 0; currnetRow--) //// Up Right
+                {
+                    upRightPice = m_Board.m_Borad[Math.Min(currnetRow, 0), Math.Min(currentCol - 1, m_BoardSize - 1)];
+
+                    if (i_pice.IsOpponent(upRightPice))
+                    {
+                        closeEnamyList.Add(upRightPice);
+                        break;
+                    }
+
+                    currentCol += 1;
+                }
+
+                currentCol = i_pice.Col;
+
+                for (currnetRow = i_pice.Row + 1; currnetRow < m_BoardSize; currnetRow++) //// down Right
+                {
+                    downRightPice = m_Board.m_Borad[Math.Min(currnetRow, m_BoardSize - 1), Math.Min(currentCol + 1, m_BoardSize - 1)];
+
+                    if (i_pice.IsOpponent(upRightPice))
+                    {
+                        closeEnamyList.Add(upRightPice);
+                        break;
+                    }
+
+                    currentCol += 1;
+                }
+            }
+
+            return closeEnamyList;
+        }
+
+        private bool PiceCanEat(Pice i_pice)
+        {
+            bool canEat = true;
+
+            List<Pice> closeEnamyList = this.closeEnamyList(i_pice);
+
+            if (closeEnamyList.Count == 0)
+            {
+                canEat = false;
+            }
+            else
+            {
+                foreach (Pice enemyPice in closeEnamyList)
+                {
+                    int afterJumpRow = enemyPice.Row + (enemyPice.Row - i_pice.Row);
+                    int afterJumpCol = enemyPice.Col + (enemyPice.Col - i_pice.Col);
+
+                    if (m_Board.HasPice(afterJumpRow, afterJumpCol))
+                    {
+                        canEat = true;
+                    }
+                }
+            }
+
+            return canEat;
+        }
+
+        private bool CurrentPlayerCanEat()
+        {
+
+            bool playerCanEat = false;
+
+            foreach (Pice currentPice in this.m_PlayerTurn.m_PicesList)
+            {
+                if (PiceCanEat(currentPice))
+                {
+                    playerCanEat = true;
+                    break;
+                }
+            }
+
+            return playerCanEat;
+        }
+
         public bool PlayRandomMove()
         {
             List<Pice> currentPlayerPices = m_PlayerTurn.m_PicesList;
 
             List<string> playerAvilableMoves = new List<string>();
-        
+
             Random rnd = new Random();
 
             bool vaildMove = false;
-        
+
             for (int i = 0; i < currentPlayerPices.Count; i++)
             {
                 Pice currentPice = currentPlayerPices[i];
-        
+
                 List<Tuple<int, int>> canGoList = currentPice.CanGo(this.m_Board.m_Size);
-        
+
                 foreach (Tuple<int, int> destMove in canGoList)
                 {
                     Tuple<int, int> source = currentPice.GetLocationTuple();

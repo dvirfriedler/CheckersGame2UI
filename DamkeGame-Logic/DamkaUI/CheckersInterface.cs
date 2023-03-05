@@ -47,6 +47,14 @@ namespace DamkaUI
 
         }
 
+        public static void ShowScore(Game i_game)
+        {
+            string firstPlayerScore = i_game.GetScore(i_game.Player1).ToString("0.###");
+            string secondPlayerScore = i_game.GetScore(i_game.Player2).ToString("0.###");
+            System.Console.WriteLine($"{i_game.Player1.Name} Scoure {firstPlayerScore} : " +
+              $"{i_game.Player2.Name} Scoure {secondPlayerScore} ");
+        }
+
         public static bool NewGame()
         {
             return true;
@@ -56,6 +64,7 @@ namespace DamkaUI
         {
             Console.WriteLine(o_game.m_Board.ToString());
             ShowLastMove(o_game);
+            ShowScore(o_game);
         }
 
         public static void ShowLastMove(Game i_game)
@@ -120,6 +129,7 @@ namespace DamkaUI
                 System.Console.WriteLine("Please enter a valid name and press enter.");
                 io_PlayerName = System.Console.ReadLine();
             }
+
             Console.Clear();
             return io_PlayerName;
         }
@@ -129,11 +139,12 @@ namespace DamkaUI
             System.Console.WriteLine("Please choose the the size of your bord: 6, 8, 10 and press enter.");
             string o_BordSize = System.Console.ReadLine();
 
-            while(!"6810".Contains(o_BordSize))
+            while (!"6810".Contains(o_BordSize))
             {
-                System.Console.WriteLine("Please enter valid bord size (6, 8 10) and press enter.");
-                o_BordSize = System.Console.ReadLine();
+              System.Console.WriteLine("Please enter valid bord size (6, 8 10) and press enter.");
+              o_BordSize = System.Console.ReadLine();
             }
+
              return int.Parse(o_BordSize);
         }
     }
