@@ -7,8 +7,8 @@ namespace DamkaUI
     {
         public static void Start(bool test = false)
         {
-            string firstPlayerName = "Player1";
-            string secondPlayerName = "PC";
+            string player1Name = "Player1";
+            string player2Name = "PC";
             int bordSize = 8;
             bool pcOpponnent = false;
             bool qwit = false;
@@ -27,18 +27,18 @@ namespace DamkaUI
                         //CheckersInterface.ShowInstractions();
 
                         pcOpponnent = CheckersInterface.GatGameMode() == 1;
-                        firstPlayerName = CheckersInterface.GetPlayerName(1);
+                        player1Name = CheckersInterface.GetPlayerName(1);
 
                         if (!pcOpponnent)
                         {
-                            secondPlayerName = CheckersInterface.GetPlayerName(2);
+                            player2Name = CheckersInterface.GetPlayerName(2);
                         }
 
                         bordSize = CheckersInterface.GetBoardSize();
 
                     }//// TEST
 
-                    game = new Game(firstPlayerName, secondPlayerName, bordSize);
+                    game = new Game(player1Name, player2Name, bordSize);
                     gameStart = true;
                 }
 

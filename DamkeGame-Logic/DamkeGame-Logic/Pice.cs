@@ -3,10 +3,9 @@ using System.Collections.Generic;
 
 namespace CheckersGame
 {
-
     public class Pice
     {
-        private string m_Symbole { get; set; }
+        private string m_Symbole;
 
         private string m_TeamSymbols;
 
@@ -17,6 +16,8 @@ namespace CheckersGame
         private int m_Row;
 
         private int m_BoardSize;
+
+        private int m_Rank;
 
         public Pice(bool isPlayerOnePice)
         {
@@ -32,9 +33,11 @@ namespace CheckersGame
            }
 
            this.m_IsKing = false;
+
+           this.m_Rank = 1;
         }
 
-        public void SetKing()
+        private void SetKing()
         {
             string newSymbole = "K";
 
@@ -43,7 +46,9 @@ namespace CheckersGame
                 newSymbole = "Q";
             }
 
-            m_Symbole = newSymbole;
+            this.m_Rank = 10;
+
+            this.m_Symbole = newSymbole;
         }
 
         public List<Pice> GetList(int i_ListSize)
@@ -66,6 +71,8 @@ namespace CheckersGame
             get => this.m_Symbole;
             set => this.m_Symbole = value;
         }
+
+        public int Rank => this.m_Rank;
 
         public bool IsKing => m_IsKing;
 
@@ -98,11 +105,6 @@ namespace CheckersGame
             }
         }
 
-        public bool CanEat()
-        {
-            return true;
-        }
-
         public Tuple<int,int> GetLocationTuple()
         {
             Tuple<int, int> locationTuple = new Tuple<int, int>(this.Row, this.Col);
@@ -124,18 +126,6 @@ namespace CheckersGame
             }
 
             return isOponnent;
-        }
-
-        public bool OnBorder(int i_BoardSize)
-        {
-            bool onBorder = false;
-
-            if (this.Row == 0 || this.Row == i_BoardSize - 1 || this.Col == 0 || this.Col == i_BoardSize - 1)
-            {
-                onBorder = true;
-            }
-
-            return onBorder;
         }
 
         public Pice[,] CanGoTest(int i_BoradSize)

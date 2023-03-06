@@ -71,11 +71,11 @@ namespace CheckersGame
 
             //// CanGoTeast
 
-            Pice[,] tempBoard = this.m_Borad;
-            Pice[,] testAvilableMoves = piceToMove.CanGoTest(m_Size);
-            this.m_Borad = testAvilableMoves;
-            Console.WriteLine(this.ToString());
-            this.m_Borad = tempBoard;
+           //// Pice[,] tempBoard = this.m_Borad;
+           //// Pice[,] testAvilableMoves = piceToMove.CanGoTest(m_Size);
+           //// this.m_Borad = testAvilableMoves;
+           //// Console.WriteLine(this.ToString());
+           //// this.m_Borad = tempBoard;
 
             ////
 
@@ -195,7 +195,6 @@ namespace CheckersGame
                 boradString += "\n";
             }
 
-            Console.WriteLine(boradString); // test
             return boradString;
         }
 

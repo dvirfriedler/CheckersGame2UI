@@ -105,19 +105,6 @@ namespace CheckersGame
             return this.m_Board.TotalNumberOfPices != i_numberOfPicesInTheStartOfTheTurn;
         }
 
-        /// <summary>
-        /// This methode chaeck that the move is vaild according to 3 rules.
-        /// 1.Check that the move template is according to "**>**"
-        /// 2.Check that the source isn't empty and that the detstnation is empty
-        /// 3.Check that the source pice is belongs to the current player turn.
-        /// 4.Check that the destnation location is included in the set of the avilabile location of the sorcepice.
-        /// 5.Check if its avilable to eat soldiers in the way from sorce to destnation.
-        /// </summary>
-        /// <param name="sRow"></param>
-        /// <param name="sCol"></param>
-        /// <param name="destRow"></param>
-        /// <param name="destCol"></param>
-        /// <returns>return True if the move is can be done.</returns>
         private bool moveIsVaild(string i_Move)
         {
             bool moveIsVaild = true;
@@ -148,7 +135,7 @@ namespace CheckersGame
             {
                 moveIsVaild = false;
             }
-            else if (!sourcePice.CanGo(this.m_Board.Size).Contains(dest))
+            else if (!sourcePice.CanGo(this.m_Board.Size).Contains(dest)) 
             {
                 moveIsVaild = false;
             }
@@ -165,7 +152,7 @@ namespace CheckersGame
             }
             else //// no soldier in the way
             {
-                if (!sourcePice.IsKing) ////The pice isnt a king 
+                if (!sourcePice.IsKing) ////The pice isnt a king.
                 {
                     if (this.distance(sCol, sRow, destCol, destRow) != 1)
                     {
@@ -193,10 +180,10 @@ namespace CheckersGame
             return moveIsVaild && eatWitheCorrectPice;
         }
 
-        private int distance(int sCol, int sRow, int i_destCol, int DestRow)
+        private int distance(int i_sCol, int i_sRow, int i_destCol, int i_destRow)
         {
-            int colDistance = Math.Abs(sCol - i_destCol);
-            int rowDistance = Math.Abs(sRow - DestRow);
+            int colDistance = Math.Abs(i_sCol - i_destCol);
+            int rowDistance = Math.Abs(i_sRow - i_destRow);
 
             return Math.Max(colDistance, rowDistance);
         }
@@ -299,10 +286,12 @@ namespace CheckersGame
             return gameIsOver;
         }
 
-        public double GetScore(Player i_Player)
+        public int GetScore(Player i_Player)
         {
-            double totalPicesCount = m_Player1.Pices.Count + m_Player2.Pices.Count;
-            double score = 0.5 + (double)(i_Player.Pices.Count) / totalPicesCount;
+            double totalPicesRank = this.Player1.GetPlayerRank() + this.Player2.GetPlayerRank();
+            double currentPlayerRank = i_Player.GetPlayerRank();
+
+            int score = (int)(Math.Pow((double)currentPlayerRank / (double)totalPicesRank, 0.4) * 100);
 
             return score;
         }
@@ -482,8 +471,6 @@ namespace CheckersGame
 
             bool vaildMove = false;
 
-            int testCounter = 0;//// tets
-            List<string> playerAvilableMovesCopy = new List<string>(); ////tets
 
             for (int i = 0; i < currentPlayerPices.Count; i++)
             {
@@ -497,13 +484,11 @@ namespace CheckersGame
                     List<Tuple<int, int>> fullmove = new List<Tuple<int, int>> { source, destMove };
 
                     playerAvilableMoves.Add(moveTupleToStringMove(fullmove));
-                    playerAvilableMovesCopy.Add(moveTupleToStringMove(fullmove)); ///test
                 }
             }
 
             while (!vaildMove)
             {
-                testCounter++; ////tetst
                 string currentMove = playerAvilableMoves[rnd.Next(playerAvilableMoves.Count)];
                 if (!moveIsVaild(currentMove))
                 {

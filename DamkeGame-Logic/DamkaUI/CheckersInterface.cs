@@ -35,6 +35,9 @@ namespace DamkaUI
 
         public static string AskForNextMove(Game i_game)
         {
+            System.Console.WriteLine($"{i_game.Player1.Name} score: {i_game.GetScore(i_game.Player1)} ");
+            System.Console.WriteLine($"{i_game.Player2.Name} score: {i_game.GetScore(i_game.Player2)} ");
+
             if (i_game.EatInLastMove)
             {
                 System.Console.WriteLine($"Congratulations {i_game.PlayerTurn.Name} ! You have another turn.");
@@ -156,15 +159,15 @@ namespace DamkaUI
         public static int GetBoardSize()
         {
             System.Console.WriteLine("Please choose the the size of your bord: 6, 8, 10 and press enter.");
-            string o_BordSize = System.Console.ReadLine();
+            string bordSize = System.Console.ReadLine();
 
-            while (!"6810".Contains(o_BordSize))
+            while (!"6810".Contains(bordSize))
             {
               System.Console.WriteLine("Please enter valid bord size (6, 8 10) and press enter.");
-              o_BordSize = System.Console.ReadLine();
+              bordSize = System.Console.ReadLine();
             }
 
-            return int.Parse(o_BordSize);
+            return int.Parse(bordSize);
         }
     }
 }

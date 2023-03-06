@@ -47,5 +47,17 @@ namespace CheckersGame
                 m_TeamSymbols = "OQ";
             }
         }
+
+        public int GetPlayerRank()
+        {
+            int totalRank = 0;
+
+            foreach (Pice pice in this.m_PicesList)
+            {
+                totalRank += pice.Rank;
+            }
+
+            return totalRank;
+        }
     }
 }
