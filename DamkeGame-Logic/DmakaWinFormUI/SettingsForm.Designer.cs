@@ -163,6 +163,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "SettingsForm";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.SettingsForm_Load);
             this.BoradSizeGroupBox.ResumeLayout(false);
             this.BoradSizeGroupBox.PerformLayout();
             this.ResumeLayout(false);

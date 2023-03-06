@@ -1,4 +1,4 @@
-﻿namespace DamkaUI
+﻿namespace DamkaLogic
 {
     using System;
     using DamkaLogic;

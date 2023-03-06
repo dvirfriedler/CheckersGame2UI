@@ -15,7 +15,7 @@ namespace DmakaWinFormUI
         private string m_Move = null;
 
         private List<Button> m_ButtonSlots = new List<Button>();
-        public GameForm(Game i_Game)
+        public GameForm()
         {
             InitializeComponent();
         }
@@ -25,16 +25,14 @@ namespace DmakaWinFormUI
             
         }
 
+
         public static void NotAValidMove()
         {
             Form errorForm = new Form();
             errorForm.Text = "Please Enter a valid move!!!";
         }
 
-        public static string AskForNextMove(Game i_game)
-        {
-            
-        }
+       
 
     }
 }

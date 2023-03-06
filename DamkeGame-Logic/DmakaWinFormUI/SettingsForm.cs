@@ -19,6 +19,9 @@ namespace DmakaWinFormUI
         private int m_BoardSize = 0;
 
 
+       
+
+
         public SettingsForm()
         {
             InitializeComponent();
@@ -128,6 +131,11 @@ namespace DmakaWinFormUI
         private void StartGameButton_Click(object sender, EventArgs e)
         {
             new GameForm();
+        }
+
+        private void SettingsForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
