@@ -1,0 +1,11 @@
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DmakaWinFormUI\bin\Debug\DmakaWinFormUI.exe.config
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DmakaWinFormUI\bin\Debug\DmakaWinFormUI.exe
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DmakaWinFormUI\bin\Debug\DmakaWinFormUI.pdb
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DmakaWinFormUI\obj\Debug\DmakaWinFormUI.csproj.AssemblyReference.cache
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DmakaWinFormUI\obj\Debug\DmakaWinFormUI.csproj.SuggestedBindingRedirects.cache
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DmakaWinFormUI\obj\Debug\DmakaWinFormUI.Properties.Resources.resources
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DmakaWinFormUI\obj\Debug\DmakaWinFormUI.SettingsForm.resources
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DmakaWinFormUI\obj\Debug\DmakaWinFormUI.csproj.GenerateResource.cache
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DmakaWinFormUI\obj\Debug\DmakaWinFormUI.csproj.CoreCompileInputs.cache
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DmakaWinFormUI\obj\Debug\DmakaWinFormUI.exe
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DmakaWinFormUI\obj\Debug\DmakaWinFormUI.pdb

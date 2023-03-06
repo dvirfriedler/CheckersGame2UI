@@ -65,11 +65,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dvirf\\Source\\Repos\\DamkaCounle\\DamkeGame-Logic\\DamkeGame-Logic\\DamkeGame-Logic.csproj",
-      "projectName": "DamkeGame-Logic",
-      "projectPath": "C:\\Users\\dvirf\\Source\\Repos\\DamkaCounle\\DamkeGame-Logic\\DamkeGame-Logic\\DamkeGame-Logic.csproj",
+      "projectUniqueName": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\DamkeGame-Logic\\Damke-Logic.csproj",
+      "projectName": "Damke-Logic",
+      "projectPath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\DamkeGame-Logic\\Damke-Logic.csproj",
       "packagesPath": "C:\\Users\\dvirf\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dvirf\\Source\\Repos\\DamkaCounle\\DamkeGame-Logic\\DamkeGame-Logic\\obj\\",
+      "outputPath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\DamkeGame-Logic\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dvirf\\AppData\\Roaming\\NuGet\\NuGet.Config",

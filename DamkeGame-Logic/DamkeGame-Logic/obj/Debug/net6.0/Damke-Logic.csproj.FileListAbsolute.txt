@@ -1,0 +1,12 @@
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DamkeGame-Logic\bin\Debug\net6.0\Damke-Logic.deps.json
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DamkeGame-Logic\bin\Debug\net6.0\Damke-Logic.dll
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DamkeGame-Logic\bin\Debug\net6.0\Damke-Logic.pdb
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DamkeGame-Logic\obj\Debug\net6.0\Damke-Logic.csproj.AssemblyReference.cache
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DamkeGame-Logic\obj\Debug\net6.0\Damke-Logic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DamkeGame-Logic\obj\Debug\net6.0\Damke-Logic.AssemblyInfoInputs.cache
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DamkeGame-Logic\obj\Debug\net6.0\Damke-Logic.AssemblyInfo.cs
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DamkeGame-Logic\obj\Debug\net6.0\Damke-Logic.csproj.CoreCompileInputs.cache
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DamkeGame-Logic\obj\Debug\net6.0\Damke-Logic.dll
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DamkeGame-Logic\obj\Debug\net6.0\refint\Damke-Logic.dll
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DamkeGame-Logic\obj\Debug\net6.0\Damke-Logic.pdb
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DamkeGame-Logic\obj\Debug\net6.0\ref\Damke-Logic.dll

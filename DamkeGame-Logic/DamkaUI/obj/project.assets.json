@@ -11,14 +11,14 @@
       "StyleCop.Analyzers.Unstable/1.2.0.435": {
         "type": "package"
       },
-      "DamkeGame-Logic/1.0.0": {
+      "Damke-Logic/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "compile": {
-          "bin/placeholder/DamkeGame-Logic.dll": {}
+          "bin/placeholder/Damke-Logic.dll": {}
         },
         "runtime": {
-          "bin/placeholder/DamkeGame-Logic.dll": {}
+          "bin/placeholder/Damke-Logic.dll": {}
         }
       }
     }
@@ -63,15 +63,15 @@
         "tools/uninstall.ps1"
       ]
     },
-    "DamkeGame-Logic/1.0.0": {
+    "Damke-Logic/1.0.0": {
       "type": "project",
-      "path": "../DamkeGame-Logic/DamkeGame-Logic.csproj",
-      "msbuildProject": "../DamkeGame-Logic/DamkeGame-Logic.csproj"
+      "path": "../DamkeGame-Logic/Damke-Logic.csproj",
+      "msbuildProject": "../DamkeGame-Logic/Damke-Logic.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "DamkeGame-Logic >= 1.0.0",
+      "Damke-Logic >= 1.0.0",
       "StyleCop.Analyzers >= 1.2.0-beta.435"
     ]
   },
@@ -81,9 +81,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\DamkaUI\\DamkaUI.csproj",
-      "projectName": "DamkaUI",
-      "projectPath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\DamkaUI\\DamkaUI.csproj",
+      "projectUniqueName": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\DamkaUI\\Damka-ConsoleUI.csproj",
+      "projectName": "Damka-ConsoleUI",
+      "projectPath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\DamkaUI\\Damka-ConsoleUI.csproj",
       "packagesPath": "C:\\Users\\dvirf\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\DamkaUI\\obj\\",
       "projectStyle": "PackageReference",
@@ -102,8 +102,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\DamkeGame-Logic\\DamkeGame-Logic.csproj": {
-              "projectPath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\DamkeGame-Logic\\DamkeGame-Logic.csproj"
+            "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\DamkeGame-Logic\\Damke-Logic.csproj": {
+              "projectPath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\DamkeGame-Logic\\Damke-Logic.csproj"
             }
           }
         }

@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace CheckersGame
+﻿namespace DamkaLogic
 {
+    using System;
+    using System.Collections.Generic;
+
     public class Game
     {
         private Board m_Board { get; set; }
@@ -64,7 +64,7 @@ namespace CheckersGame
         {
             bool didMove = true;
 
-            int startNumberOfPices = m_Board.TotalNumberOfPices;
+            int startNumberOfPices = this.m_Board.TotalNumberOfPices;
 
             if (!this.moveIsVaild(i_Move))
             {
@@ -84,7 +84,7 @@ namespace CheckersGame
 
                 Pice currentPice = this.m_Board.Borad[destRow, destCol];
 
-                if (piceWasEatenInthistMove(startNumberOfPices) && PiceCanEat(currentPice))
+                if (this.piceWasEatenInthistMove(startNumberOfPices) && this.PiceCanEat(currentPice))
                 {
                     this.m_LastMovePice = currentPice;
                     this.m_EatInLastMove = true;
@@ -161,7 +161,7 @@ namespace CheckersGame
                 }
             }
 
-            if (CurrentPlayerCanEat())
+            if (this.CurrentPlayerCanEat())
             {
                 if (soldiersInTheWayList.Count == 0)
                 {
@@ -169,9 +169,9 @@ namespace CheckersGame
                 }
             }
 
-            if (m_EatInLastMove)
+            if (this.EatInLastMove)
             {
-                if (sRow != m_LastMovePice.Row || sCol != m_LastMovePice.Col)
+                if (sRow != this.m_LastMovePice.Row || sCol != this.m_LastMovePice.Col)
                 {
                     eatWitheCorrectPice = false;
                 }
@@ -230,11 +230,11 @@ namespace CheckersGame
         {
             bool valid = true;
 
-            List<int> locations = CharToLocation(i_Move);
+            List<int> locations = this.CharToLocation(i_Move);
 
             foreach (int location in locations)
             {
-                if (location >= m_Board.Size)
+                if (location >= this.Board.Size)
                 {
                     valid = false;
                 }
@@ -261,7 +261,7 @@ namespace CheckersGame
 
         private List<Tuple<int, int>> moveToTuppleLocationsList(string i_Move)
         {
-            List<int> positions = CharToLocation(i_Move);
+            List<int> positions = this.CharToLocation(i_Move);
 
             Tuple<int, int> sourceTuple = new Tuple<int, int>(positions[1], positions[0]);
             Tuple<int, int> destTuple = new Tuple<int, int>(positions[3], positions[2]);
@@ -278,7 +278,7 @@ namespace CheckersGame
         {
             bool gameIsOver = false;
 
-            if (m_Player1.Pices.Count == 0 || m_Player2.Pices.Count == 0)
+            if (this.Player1.Pices.Count == 0 || this.Player2.Pices.Count == 0)
             {
                 gameIsOver = true;
             }
@@ -318,10 +318,10 @@ namespace CheckersGame
         {
             List<Pice> closeEnamyList = new List<Pice>();
 
-            Pice downLeftPice = m_Board.Borad[Math.Min(i_pice.Row + 1, m_BoardSize - 1), Math.Max(i_pice.Col - 1, 0)];
-            Pice downRightPice = m_Board.Borad[Math.Min(i_pice.Row + 1, m_BoardSize - 1), Math.Min(i_pice.Col + 1, m_BoardSize - 1)];
-            Pice upLeftPice = m_Board.Borad[Math.Max(i_pice.Row - 1, 0), Math.Max(i_pice.Col - 1, 0)];
-            Pice upRightPice = m_Board.Borad[Math.Max(i_pice.Row - 1, 0), Math.Min(i_pice.Col + 1, m_BoardSize - 1)];
+            Pice downLeftPice = this.Board.Borad[Math.Min(i_pice.Row + 1, this.m_BoardSize - 1), Math.Max(i_pice.Col - 1, 0)];
+            Pice downRightPice = this.Board.Borad[Math.Min(i_pice.Row + 1, this.m_BoardSize - 1), Math.Min(i_pice.Col + 1, this.m_BoardSize - 1)];
+            Pice upLeftPice = this.Board.Borad[Math.Max(i_pice.Row - 1, 0), Math.Max(i_pice.Col - 1, 0)];
+            Pice upRightPice = this.Board.Borad[Math.Max(i_pice.Row - 1, 0), Math.Min(i_pice.Col + 1, this.m_BoardSize - 1)];
 
             if (i_pice.Symbole.Equals("X"))
             {
@@ -354,7 +354,7 @@ namespace CheckersGame
 
                 for (currnetRow = i_pice.Row - 1; currnetRow >= 0; currnetRow--) //// Up Left
                 {
-                    upLeftPice = m_Board.Borad[Math.Max(currnetRow, 0), Math.Max(currentCol - 1, 0)];
+                    upLeftPice = this.Board.Borad[Math.Max(currnetRow, 0), Math.Max(currentCol - 1, 0)];
 
                     if (i_pice.IsOpponent(upLeftPice))
                     {
@@ -367,9 +367,9 @@ namespace CheckersGame
 
                 currentCol = i_pice.Col;
 
-                for (currnetRow = i_pice.Row + 1; currnetRow < m_BoardSize; currnetRow++) //// down Left
+                for (currnetRow = i_pice.Row + 1; currnetRow < this.m_BoardSize; currnetRow++) //// down Left
                 {
-                    downLeftPice = m_Board.Borad[Math.Min(currnetRow, m_BoardSize - 1), Math.Max(currentCol - 1, 0)];
+                    downLeftPice = this.Board.Borad[Math.Min(currnetRow, this.m_BoardSize - 1), Math.Max(currentCol - 1, 0)];
 
                     if (i_pice.IsOpponent(downLeftPice))
                     {
@@ -384,7 +384,7 @@ namespace CheckersGame
 
                 for (currnetRow = i_pice.Row - 1; currnetRow >= 0; currnetRow--) //// Up Right
                 {
-                    upRightPice = m_Board.Borad[Math.Max(currnetRow, 0), Math.Min(currentCol + 1, m_BoardSize - 1)];
+                    upRightPice = this.Board.Borad[Math.Max(currnetRow, 0), Math.Min(currentCol + 1, this.m_BoardSize - 1)];
 
                     if (i_pice.IsOpponent(upRightPice))
                     {
@@ -397,9 +397,9 @@ namespace CheckersGame
 
                 currentCol = i_pice.Col;
 
-                for (currnetRow = i_pice.Row + 1; currnetRow < m_BoardSize; currnetRow++) //// down Right
+                for (currnetRow = i_pice.Row + 1; currnetRow < this.m_BoardSize; currnetRow++) //// down Right
                 {
-                    downRightPice = m_Board.Borad[Math.Min(currnetRow, m_BoardSize - 1), Math.Min(currentCol + 1, m_BoardSize - 1)];
+                    downRightPice = this.Board.Borad[Math.Min(currnetRow, this.m_BoardSize - 1), Math.Min(currentCol + 1, this.m_BoardSize - 1)];
 
                     if (i_pice.IsOpponent(upRightPice))
                     {
@@ -431,9 +431,9 @@ namespace CheckersGame
                     int afterJumpRow = enemyPice.Row + (enemyPice.Row - i_pice.Row);
                     int afterJumpCol = enemyPice.Col + (enemyPice.Col - i_pice.Col);
 
-                    if (!m_Board.HasPiceOrOutOfBoard(afterJumpRow, afterJumpCol))
+                    if (!this.Board.HasPiceOrOutOfBoard(afterJumpRow, afterJumpCol))
                     {
-                        if (!m_Board.OutOfBoard(afterJumpRow, afterJumpCol))
+                        if (!this.Board.OutOfBoard(afterJumpRow, afterJumpCol))
                         {
                             canEat = true;
                             break;
@@ -451,7 +451,7 @@ namespace CheckersGame
 
             foreach (Pice currentPice in this.m_PlayerTurn.Pices)
             {
-                if (PiceCanEat(currentPice))
+                if (this.PiceCanEat(currentPice))
                 {
                     playerCanEat = true;
                     break;
@@ -463,7 +463,7 @@ namespace CheckersGame
 
         public bool PlayRandomMove()
         {
-            List<Pice> currentPlayerPices = m_PlayerTurn.Pices;
+            List<Pice> currentPlayerPices = this.PlayerTurn.Pices;
 
             List<string> playerAvilableMoves = new List<string>();
 
@@ -483,20 +483,20 @@ namespace CheckersGame
                     Tuple<int, int> source = currentPice.GetLocationTuple();
                     List<Tuple<int, int>> fullmove = new List<Tuple<int, int>> { source, destMove };
 
-                    playerAvilableMoves.Add(moveTupleToStringMove(fullmove));
+                    playerAvilableMoves.Add(this.moveTupleToStringMove(fullmove));
                 }
             }
 
             while (!vaildMove)
             {
                 string currentMove = playerAvilableMoves[rnd.Next(playerAvilableMoves.Count)];
-                if (!moveIsVaild(currentMove))
+                if (!this.moveIsVaild(currentMove))
                 {
                     playerAvilableMoves.Remove(currentMove);
                 }
                 else
                 {
-                    PlayMove(currentMove);
+                    this.PlayMove(currentMove);
                     break;
                 }
             }

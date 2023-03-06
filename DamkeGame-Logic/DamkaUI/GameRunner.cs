@@ -1,15 +1,17 @@
-﻿using System;
-using CheckersGame;
-
-namespace DamkaUI
+﻿namespace DamkaUI
 {
+    using System;
+    using DamkaLogic;
+
     public static class GameRunner
     {
         public static void Start(bool test = false)
         {
             string player1Name = "Player1";
             string player2Name = "PC";
+
             int bordSize = 8;
+
             bool pcOpponnent = false;
             bool qwit = false;
             bool gameStart = false;
@@ -54,7 +56,7 @@ namespace DamkaUI
                 {
                     if (game.PlayerTurn.Name.Equals("PC"))
                     {
-                         game.PlayRandomMove();
+                        game.PlayRandomMove();
                     }
 
                     else

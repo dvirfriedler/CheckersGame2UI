@@ -1,55 +1,54 @@
-﻿using System;
-using CheckersGame;
-
-namespace DamkaUI
+﻿namespace DamkaUI
 {
+    using System;
+    using DamkaLogic;
+
     public static class CheckersInterface
     {
-
         public static void ShowInstractions()
         {
-            System.Console.WriteLine("Instructions:");
-            System.Console.WriteLine("In each itration each player will need to deside between 3 options:");
-            System.Console.WriteLine("1. Play a game move => **>**");
-            System.Console.WriteLine("2. Play a rendom move => R");
-            System.Console.WriteLine("3. Finish the game => Q");
-            System.Console.WriteLine("For example if you want to move your piece from Af to Ae, write Af>Ae and then press enter");
-            System.Console.WriteLine("When you ready to play press enter");
+            Console.WriteLine("Instructions:");
+            Console.WriteLine("In each itration each player will need to deside between 3 options:");
+            Console.WriteLine("1. Play a game move => **>**");
+            Console.WriteLine("2. Play a rendom move => R");
+            Console.WriteLine("3. Finish the game => Q");
+            Console.WriteLine("For example if you want to move your piece from Af to Ae, write Af>Ae and then press enter");
+            Console.WriteLine("When you ready to play press enter");
             Console.ReadLine();
             Console.Clear();
         }
 
         public static void ShowInrtudction()
         {
-            System.Console.WriteLine("Hello:");
-            System.Console.WriteLine("This is Chackers Console applaction:");
-            System.Console.WriteLine("Are You ready to play?");
+            Console.WriteLine("Hello:");
+            Console.WriteLine("This is Chackers Console applaction:");
+            Console.WriteLine("Are You ready to play?");
             Console.ReadLine();
             Console.Clear();
         }
 
         public static void NotAValidMove()
         {
-            System.Console.WriteLine("Please Enter a valid move!!!");
+            Console.WriteLine("Please Enter a valid move!!!");
         }
 
         public static string AskForNextMove(Game i_game)
         {
-            System.Console.WriteLine($"{i_game.Player1.Name} score: {i_game.GetScore(i_game.Player1)} ");
-            System.Console.WriteLine($"{i_game.Player2.Name} score: {i_game.GetScore(i_game.Player2)} ");
+            Console.WriteLine($"{i_game.Player1.Name} score: {i_game.GetScore(i_game.Player1)} ");
+            Console.WriteLine($"{i_game.Player2.Name} score: {i_game.GetScore(i_game.Player2)} ");
 
             if (i_game.EatInLastMove)
             {
-                System.Console.WriteLine($"Congratulations {i_game.PlayerTurn.Name} ! You have another turn.");
-                System.Console.WriteLine();
-                System.Console.WriteLine($"{i_game.PlayerTurn.Name} your last move was: {i_game.LastMove}");
+                Console.WriteLine($"Congratulations {i_game.PlayerTurn.Name} ! You have another turn.");
+                Console.WriteLine();
+                Console.WriteLine($"{i_game.PlayerTurn.Name} your last move was: {i_game.LastMove}");
             }
             else
             {
-                System.Console.WriteLine($"{i_game.PlayerTurn.Opponent.Name} was : {i_game.LastMove}");
+                Console.WriteLine($"{i_game.PlayerTurn.Opponent.Name} was : {i_game.LastMove}");
             }
 
-            System.Console.WriteLine($"{i_game.PlayerTurn.Name} please enter your next Move");
+            Console.WriteLine($"{i_game.PlayerTurn.Name} please enter your next Move");
 
             string move = Console.ReadLine();
 
@@ -65,13 +64,25 @@ namespace DamkaUI
         {
             string firstPlayerScore = i_game.GetScore(i_game.Player1).ToString("0.###");
             string secondPlayerScore = i_game.GetScore(i_game.Player2).ToString("0.###");
-            System.Console.WriteLine($"{i_game.Player1.Name} Scoure {firstPlayerScore} : " +
+            Console.WriteLine($"{i_game.Player1.Name} Scoure {firstPlayerScore} : " +
               $"{i_game.Player2.Name} Scoure {secondPlayerScore} ");
         }
 
         public static bool NewGame()
         {
-            return true;
+            Console.WriteLine("Do you want to start a new Game?");
+            Console.WriteLine("Y | N");
+
+            string answer = Console.ReadLine();
+
+            while (!"YN".Contains(answer))
+            {
+                Console.WriteLine("Please choose a valid input");
+                Console.WriteLine("Y | N");
+                answer = Console.ReadLine();
+            }
+
+            return answer.Equals("Y");
         }
 
         public static void ShowBorad(Game o_game)
@@ -81,7 +92,7 @@ namespace DamkaUI
 
         public static void ShowLastMove(Game i_game)
         {
-            System.Console.WriteLine($"{i_game.PlayerTurn.Opponent.Name} was : {i_game.LastMove}");
+            Console.WriteLine($"{i_game.PlayerTurn.Opponent.Name} was : {i_game.LastMove}");
         }
 
         internal static void ShowLastMove(Player playerTurn, Board o_gameBorad, int turnCounter)
@@ -95,32 +106,33 @@ namespace DamkaUI
                 Console.WriteLine("ShowLastMove");
                 Console.WriteLine("ShowLastMove");
             }
+
             Console.ReadLine();
             Console.Clear();
         }
 
         internal static void ShowGameDetails(Player i_playerOne, Player i_playerTow, int i_boradSize)
         {
-            System.Console.WriteLine($"Hello {i_playerOne.Name} you play against {i_playerTow.Name} .");
-            System.Console.WriteLine($"Your board size is: {i_boradSize}.");
+            Console.WriteLine($"Hello {i_playerOne.Name} you play against {i_playerTow.Name} .");
+            Console.WriteLine($"Your board size is: {i_boradSize}.");
         }
 
         public static int GatGameMode()
         {
-            System.Console.WriteLine("Selcet Game Mode:");
-            System.Console.WriteLine("Press 1 for playing against PC.");
-            System.Console.WriteLine("Press 2 for playing against a friend");
-            string gameMode = System.Console.ReadLine();
+            Console.WriteLine("Selcet Game Mode:");
+            Console.WriteLine("Press 1 for playing against PC.");
+            Console.WriteLine("Press 2 for playing against a friend");
+            string gameMode = Console.ReadLine();
             Console.Clear();
 
-            while (gameMode.Length != 1 || !("12".Contains(gameMode)))
+            while (gameMode.Length != 1 || !"12".Contains(gameMode))
             {
-                System.Console.WriteLine("Please enter valid input.");
-                System.Console.WriteLine("(For computer press 1.)");
-                System.Console.WriteLine("(For friend press 2.)");
+                Console.WriteLine("Please enter valid input.");
+                Console.WriteLine("(For computer press 1.)");
+                Console.WriteLine("(For friend press 2.)");
                 Console.Clear();
 
-                gameMode = System.Console.ReadLine();
+                gameMode = Console.ReadLine();
             }
 
             Console.Clear();
@@ -138,18 +150,18 @@ namespace DamkaUI
             }
 
             Console.WriteLine("Hello welcome to the Checkers.");
-            System.Console.WriteLine($"Please enter the {playerNumber} name.");
+            Console.WriteLine($"Please enter the {playerNumber} name.");
 
             string io_PlayerName = Console.ReadLine();
 
             Console.Clear();
 
-            while ( io_PlayerName.Equals("") )
+            while (io_PlayerName.Equals(""))
             {
-                System.Console.WriteLine("Your name cannot be empty");
-                System.Console.WriteLine("Please enter a valid name and press enter.");
+                Console.WriteLine("Your name cannot be empty");
+                Console.WriteLine("Please enter a valid name and press enter.");
 
-                io_PlayerName = System.Console.ReadLine();
+                io_PlayerName = Console.ReadLine();
             }
 
             Console.Clear();
@@ -158,13 +170,13 @@ namespace DamkaUI
 
         public static int GetBoardSize()
         {
-            System.Console.WriteLine("Please choose the the size of your bord: 6, 8, 10 and press enter.");
-            string bordSize = System.Console.ReadLine();
+            Console.WriteLine("Please choose the the size of your bord: 6, 8, 10 and press enter.");
+            string bordSize = Console.ReadLine();
 
             while (!"6810".Contains(bordSize))
             {
-              System.Console.WriteLine("Please enter valid bord size (6, 8 10) and press enter.");
-              bordSize = System.Console.ReadLine();
+                Console.WriteLine("Please enter valid bord size (6, 8 10) and press enter.");
+                bordSize = Console.ReadLine();
             }
 
             return int.Parse(bordSize);
