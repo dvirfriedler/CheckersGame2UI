@@ -5,17 +5,21 @@ namespace CheckersGame
 {
     public class Game
     {
-        public Board m_Board { get; set; }
+        private Board m_Board { get; set; }
 
         private Player m_Player1 { get; }
 
         private Player m_Player2 { get; }
 
-        public Player m_PlayerTurn { get; set; }
+        private Player m_PlayerTurn { get; set; }
 
-        public string m_LastMove { get; set; }
+        private string m_LastMove { get; set; }
 
         private int m_BoardSize { get; }
+
+        private Pice m_LastMovePice;
+
+        private bool m_EatInLastMove;
 
         public Game(string io_Player1Name = "firstPlater", string io_Plyaer2Name = "player2", int io_BoradSize = 6)
         {
@@ -28,8 +32,8 @@ namespace CheckersGame
             this.m_Player1 = new Player(io_Player1Name, "X", player1Pices);
             this.m_Player2 = new Player(io_Plyaer2Name, "O", player2Pices);
 
-            this.m_Player1.m_Opponent = this.m_Player2;
-            this.m_Player2.m_Opponent = this.m_Player1;
+            this.m_Player1.Opponent = this.m_Player2;
+            this.m_Player2.Opponent = this.m_Player1;
 
             this.m_PlayerTurn = this.m_Player1;
 
@@ -37,16 +41,30 @@ namespace CheckersGame
 
             this.m_LastMove = "This is the first move.";
 
-            m_BoardSize = io_BoradSize;
+            this.m_BoardSize = io_BoradSize;
+
+            this.m_LastMovePice = null;
+
+            this.m_EatInLastMove = false;
         }
+
+        public Board Board => this.m_Board;
+
+        public Player PlayerTurn => this.m_PlayerTurn;
 
         public Player Player1 => this.m_Player1;
 
         public Player Player2 => this.m_Player2;
 
+        public string LastMove => this.m_LastMove;
+
+        public bool EatInLastMove => this.m_EatInLastMove;
+
         public bool PlayMove(string i_Move)
         {
             bool didMove = true;
+
+            int startNumberOfPices = m_Board.TotalNumberOfPices;
 
             if (!this.moveIsVaild(i_Move))
             {
@@ -64,13 +82,27 @@ namespace CheckersGame
                 this.m_Board.DoMove(sRow, sCol, destRow, destCol);
                 this.m_LastMove = i_Move;
 
-                if (!this.m_PlayerTurn.EatPice())
+                Pice currentPice = this.m_Board.Borad[destRow, destCol];
+
+                if (piceWasEatenInthistMove(startNumberOfPices) && PiceCanEat(currentPice))
                 {
+                    this.m_LastMovePice = currentPice;
+                    this.m_EatInLastMove = true;
+                }
+                else
+                {
+                    this.m_LastMovePice = null;
+                    this.m_EatInLastMove = false;
                     this.m_PlayerTurn = this.PlayerTurn.Opponent;
                 }
             }
 
             return didMove;
+        }
+
+        private bool piceWasEatenInthistMove(int i_numberOfPicesInTheStartOfTheTurn)
+        {
+            return this.m_Board.TotalNumberOfPices != i_numberOfPicesInTheStartOfTheTurn;
         }
 
         /// <summary>
@@ -89,6 +121,7 @@ namespace CheckersGame
         private bool moveIsVaild(string i_Move)
         {
             bool moveIsVaild = true;
+            bool eatWitheCorrectPice = true;
 
             List<Tuple<int, int>> sorceAndDest = this.moveToTuppleLocationsList(i_Move);
 
@@ -99,7 +132,7 @@ namespace CheckersGame
 
             List<Pice> soldiersInTheWayList = this.m_Board.ListSoldiersInWay(sRow, sCol, destRow, destCol);
 
-            Pice sourcePice = this.m_Board.m_Borad[sRow, sCol];
+            Pice sourcePice = this.m_Board.Borad[sRow, sCol];
 
             Tuple<int, int> dest = new Tuple<int, int>(destRow, destCol);
 
@@ -107,7 +140,7 @@ namespace CheckersGame
             {
                 moveIsVaild = false;
             }
-            else if (this.m_Board.m_Borad[sRow, sCol] == null || this.m_Board.HasPice(destRow, destCol)) //// Check that the source has Pice and the dest dont.
+            else if (this.m_Board.Borad[sRow, sCol] == null || this.m_Board.HasPiceOrOutOfBoard(destRow, destCol)) //// Check that the source has Pice and the dest dont.
             {
                 moveIsVaild = false;
             }
@@ -115,7 +148,7 @@ namespace CheckersGame
             {
                 moveIsVaild = false;
             }
-            else if (!sourcePice.CanGo(this.m_Board.m_Size).Contains(dest))
+            else if (!sourcePice.CanGo(this.m_Board.Size).Contains(dest))
             {
                 moveIsVaild = false;
             }
@@ -149,12 +182,20 @@ namespace CheckersGame
                 }
             }
 
-            return moveIsVaild;
+            if (m_EatInLastMove)
+            {
+                if (sRow != m_LastMovePice.Row || sCol != m_LastMovePice.Col)
+                {
+                    eatWitheCorrectPice = false;
+                }
+            }
+
+            return moveIsVaild && eatWitheCorrectPice;
         }
 
-        private int distance(int sCol, int sRow, int DestCol, int DestRow)
+        private int distance(int sCol, int sRow, int i_destCol, int DestRow)
         {
-            int colDistance = Math.Abs(sCol - DestCol);
+            int colDistance = Math.Abs(sCol - i_destCol);
             int rowDistance = Math.Abs(sRow - DestRow);
 
             return Math.Max(colDistance, rowDistance);
@@ -206,7 +247,7 @@ namespace CheckersGame
 
             foreach (int location in locations)
             {
-                if (location >= m_Board.m_Size)
+                if (location >= m_Board.Size)
                 {
                     valid = false;
                 }
@@ -250,7 +291,7 @@ namespace CheckersGame
         {
             bool gameIsOver = false;
 
-            if(m_Player1.m_PicesList.Count == 0 || m_Player2.m_PicesList.Count == 0)
+            if (m_Player1.Pices.Count == 0 || m_Player2.Pices.Count == 0)
             {
                 gameIsOver = true;
             }
@@ -260,15 +301,10 @@ namespace CheckersGame
 
         public double GetScore(Player i_Player)
         {
-            double totalPicesCount = m_Player1.m_PicesList.Count + m_Player2.m_PicesList.Count;
-            double score = 0.5 + (double)(i_Player.m_PicesList.Count) / totalPicesCount;
+            double totalPicesCount = m_Player1.Pices.Count + m_Player2.Pices.Count;
+            double score = 0.5 + (double)(i_Player.Pices.Count) / totalPicesCount;
 
             return score;
-        }
-
-        public Player PlayerTurn
-        {
-            get => this.m_PlayerTurn;
         }
 
         private string moveTupleToStringMove(List<Tuple<int, int>> i_MoveTupple)
@@ -286,17 +322,17 @@ namespace CheckersGame
 
         private Pice getPice(int row, int col)
         {
-            return this.m_Board.m_Borad[row, col];
+            return this.m_Board.Borad[row, col];
         }
 
         private List<Pice> closeEnamyList(Pice i_pice)
         {
             List<Pice> closeEnamyList = new List<Pice>();
 
-            Pice downLeftPice = m_Board.m_Borad[Math.Min(i_pice.Row + 1, m_BoardSize - 1), Math.Max(i_pice.Col - 1, 0)];
-            Pice downRightPice = m_Board.m_Borad[Math.Min(i_pice.Row + 1, m_BoardSize - 1), Math.Min(i_pice.Col + 1, m_BoardSize - 1)];
-            Pice upLeftPice = m_Board.m_Borad[Math.Max(i_pice.Row - 1, 0), Math.Max(i_pice.Col - 1, 0)];
-            Pice upRightPice = m_Board.m_Borad[Math.Max(i_pice.Row - 1, 0), Math.Min(i_pice.Col + 1, m_BoardSize - 1)];
+            Pice downLeftPice = m_Board.Borad[Math.Min(i_pice.Row + 1, m_BoardSize - 1), Math.Max(i_pice.Col - 1, 0)];
+            Pice downRightPice = m_Board.Borad[Math.Min(i_pice.Row + 1, m_BoardSize - 1), Math.Min(i_pice.Col + 1, m_BoardSize - 1)];
+            Pice upLeftPice = m_Board.Borad[Math.Max(i_pice.Row - 1, 0), Math.Max(i_pice.Col - 1, 0)];
+            Pice upRightPice = m_Board.Borad[Math.Max(i_pice.Row - 1, 0), Math.Min(i_pice.Col + 1, m_BoardSize - 1)];
 
             if (i_pice.Symbole.Equals("X"))
             {
@@ -329,7 +365,7 @@ namespace CheckersGame
 
                 for (currnetRow = i_pice.Row - 1; currnetRow >= 0; currnetRow--) //// Up Left
                 {
-                    upLeftPice = m_Board.m_Borad[Math.Max(currnetRow, 0), Math.Min(currentCol - 1, 0)];
+                    upLeftPice = m_Board.Borad[Math.Max(currnetRow, 0), Math.Max(currentCol - 1, 0)];
 
                     if (i_pice.IsOpponent(upLeftPice))
                     {
@@ -344,7 +380,7 @@ namespace CheckersGame
 
                 for (currnetRow = i_pice.Row + 1; currnetRow < m_BoardSize; currnetRow++) //// down Left
                 {
-                    downLeftPice = m_Board.m_Borad[Math.Min(currnetRow, m_BoardSize - 1), Math.Max(currentCol - 1, 0)];
+                    downLeftPice = m_Board.Borad[Math.Min(currnetRow, m_BoardSize - 1), Math.Max(currentCol - 1, 0)];
 
                     if (i_pice.IsOpponent(downLeftPice))
                     {
@@ -359,7 +395,7 @@ namespace CheckersGame
 
                 for (currnetRow = i_pice.Row - 1; currnetRow >= 0; currnetRow--) //// Up Right
                 {
-                    upRightPice = m_Board.m_Borad[Math.Min(currnetRow, 0), Math.Min(currentCol - 1, m_BoardSize - 1)];
+                    upRightPice = m_Board.Borad[Math.Max(currnetRow, 0), Math.Min(currentCol + 1, m_BoardSize - 1)];
 
                     if (i_pice.IsOpponent(upRightPice))
                     {
@@ -374,7 +410,7 @@ namespace CheckersGame
 
                 for (currnetRow = i_pice.Row + 1; currnetRow < m_BoardSize; currnetRow++) //// down Right
                 {
-                    downRightPice = m_Board.m_Borad[Math.Min(currnetRow, m_BoardSize - 1), Math.Min(currentCol + 1, m_BoardSize - 1)];
+                    downRightPice = m_Board.Borad[Math.Min(currnetRow, m_BoardSize - 1), Math.Min(currentCol + 1, m_BoardSize - 1)];
 
                     if (i_pice.IsOpponent(upRightPice))
                     {
@@ -391,7 +427,7 @@ namespace CheckersGame
 
         private bool PiceCanEat(Pice i_pice)
         {
-            bool canEat = true;
+            bool canEat = false;
 
             List<Pice> closeEnamyList = this.closeEnamyList(i_pice);
 
@@ -406,9 +442,13 @@ namespace CheckersGame
                     int afterJumpRow = enemyPice.Row + (enemyPice.Row - i_pice.Row);
                     int afterJumpCol = enemyPice.Col + (enemyPice.Col - i_pice.Col);
 
-                    if (m_Board.HasPice(afterJumpRow, afterJumpCol))
+                    if (!m_Board.HasPiceOrOutOfBoard(afterJumpRow, afterJumpCol))
                     {
-                        canEat = true;
+                        if (!m_Board.OutOfBoard(afterJumpRow, afterJumpCol))
+                        {
+                            canEat = true;
+                            break;
+                        }
                     }
                 }
             }
@@ -418,10 +458,9 @@ namespace CheckersGame
 
         private bool CurrentPlayerCanEat()
         {
-
             bool playerCanEat = false;
 
-            foreach (Pice currentPice in this.m_PlayerTurn.m_PicesList)
+            foreach (Pice currentPice in this.m_PlayerTurn.Pices)
             {
                 if (PiceCanEat(currentPice))
                 {
@@ -435,7 +474,7 @@ namespace CheckersGame
 
         public bool PlayRandomMove()
         {
-            List<Pice> currentPlayerPices = m_PlayerTurn.m_PicesList;
+            List<Pice> currentPlayerPices = m_PlayerTurn.Pices;
 
             List<string> playerAvilableMoves = new List<string>();
 
@@ -443,11 +482,14 @@ namespace CheckersGame
 
             bool vaildMove = false;
 
+            int testCounter = 0;//// tets
+            List<string> playerAvilableMovesCopy = new List<string>(); ////tets
+
             for (int i = 0; i < currentPlayerPices.Count; i++)
             {
                 Pice currentPice = currentPlayerPices[i];
 
-                List<Tuple<int, int>> canGoList = currentPice.CanGo(this.m_Board.m_Size);
+                List<Tuple<int, int>> canGoList = currentPice.CanGo(this.m_Board.Size);
 
                 foreach (Tuple<int, int> destMove in canGoList)
                 {
@@ -455,11 +497,13 @@ namespace CheckersGame
                     List<Tuple<int, int>> fullmove = new List<Tuple<int, int>> { source, destMove };
 
                     playerAvilableMoves.Add(moveTupleToStringMove(fullmove));
+                    playerAvilableMovesCopy.Add(moveTupleToStringMove(fullmove)); ///test
                 }
             }
 
             while (!vaildMove)
             {
+                testCounter++; ////tetst
                 string currentMove = playerAvilableMoves[rnd.Next(playerAvilableMoves.Count)];
                 if (!moveIsVaild(currentMove))
                 {

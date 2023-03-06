@@ -5,27 +5,8 @@ namespace DamkaUI
 {
     public static class GameRunner
     {
-        public static void Start(bool test = true)
+        public static void Start(bool test = false)
         {
-            List<string> testMoves = new List<string>(); ////TEST
-            int testStep = 0; ////TEST
-
-            if (test) ////TEST
-            {
-                testMoves.Add("Bc>Ad");   //// TEST
-                testMoves.Add("Cf>Be");   //// TEST
-                testMoves.Add("Ad>Cf");   //// TEST
-                testMoves.Add("Bg>De");   //// TEST
-                testMoves.Add("Fc>Ed");   //// TEST
-                testMoves.Add("Gh>Hg");   //// TEST
-                testMoves.Add("Gh>Hg");   //// TEST
-                testMoves.Add("Gh>Hg");   //// TEST
-                testMoves.Add("Gh>Hg");   //// TEST
-                testMoves.Add("Gh>Hg");   //// TEST
-
-
-            }
-
             string firstPlayerName = "Player1";
             string secondPlayerName = "PC";
             int bordSize = 8;
@@ -42,8 +23,8 @@ namespace DamkaUI
                 {
                     if (!test) //// TEST
                     {
-                        CheckersInterface.ShowInrtudction();
-                        CheckersInterface.ShowInstractions();
+                        //CheckersInterface.ShowInrtudction();
+                        //CheckersInterface.ShowInstractions();
 
                         pcOpponnent = CheckersInterface.GatGameMode() == 1;
                         firstPlayerName = CheckersInterface.GetPlayerName(1);
@@ -55,7 +36,7 @@ namespace DamkaUI
 
                         bordSize = CheckersInterface.GetBoardSize();
 
-                    }  //// TEST
+                    }//// TEST
 
                     game = new Game(firstPlayerName, secondPlayerName, bordSize);
                     gameStart = true;
@@ -67,21 +48,42 @@ namespace DamkaUI
 
                 if (test)
                 {
-                   // currentMove = testMoves[testStep];
-                   // testStep++;
+                    game.PlayRandomMove();
                 }
                 else
                 {
-                    currentMove = CheckersInterface.AskForNextMove(game);
+                    if (game.PlayerTurn.Name.Equals("PC"))
+                    {
+                         game.PlayRandomMove();
+                    }
+
+                    else
+                    {
+                        currentMove = CheckersInterface.AskForNextMove(game);
+
+                        switch (currentMove)
+                        {
+                            case "R":
+
+                                game.PlayRandomMove();
+                                break;
+
+                            case "Q":
+                                qwit = true;
+                                break;
+
+                            default:
+
+                                while (!game.PlayMove(currentMove))
+                                {
+                                    CheckersInterface.NotAValidMove();
+                                    currentMove = CheckersInterface.AskForNextMove(game);
+                                }
+
+                                break;
+                        }
+                    }
                 }
-
-                //while (!game.PlayMove(currentMove))
-                //{
-                //    CheckersInterface.NotAValidMove();
-                //    currentMove = CheckersInterface.AskForNextMove(game);
-                //}
-
-                game.PlayRandomMove();
 
                 if (game.GameIsOver())
                 {

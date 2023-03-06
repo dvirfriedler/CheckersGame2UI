@@ -5,44 +5,38 @@ namespace CheckersGame
 {
     public class Player
     {
-        private string m_Name;
+        private readonly string m_Name;
 
         private string m_TeamSymbols;
 
-        public Player m_Opponent;
+        private Player m_Opponent;
 
-        public List<Pice> m_PicesList;
-
-        public Pice m_OneMoreTurnPice = null;
+        private List<Pice> m_PicesList;
 
         public Player(string i_Name,string i_Symbole, List<Pice> i_Pices)
         {
             this.m_Name = i_Name;
-            m_PicesList = i_Pices;
-            initTeamSymbols(i_Symbole);
+            this.m_PicesList = i_Pices;
+            this.InitTeamSymbols(i_Symbole);
         }
 
-        public string Name
-        {
-            get => m_Name;
-        }
+        public string Name => this.m_Name;
+
+        public string TeamSymbols => this.m_TeamSymbols;
 
         public Player Opponent
         {
-            get => m_Opponent;
+            get => this.m_Opponent;
+            set => this.m_Opponent = value;
         }
 
-        public bool EatPice()
+        public List<Pice> Pices
         {
-            return m_OneMoreTurnPice != null;
+            get => this.m_PicesList;
+            set => this.m_PicesList = value;
         }
 
-        public string TeamSymbols
-        {
-            get => m_TeamSymbols;
-        }
-
-        private void initTeamSymbols(string i_teamSymbole)
+        private void InitTeamSymbols(string i_teamSymbole)
         {
             if (i_teamSymbole == "X")
             {

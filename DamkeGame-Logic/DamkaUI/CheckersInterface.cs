@@ -9,15 +9,14 @@ namespace DamkaUI
         public static void ShowInstractions()
         {
             System.Console.WriteLine("Instructions:");
-            System.Console.WriteLine("In each itration each player will need to deside between 2 options:");
-            System.Console.WriteLine("1. Play a game move.");
-            System.Console.WriteLine("2. Finish the game.");
-            System.Console.WriteLine("If you want to finsh the game please write Q and then press Enter");
+            System.Console.WriteLine("In each itration each player will need to deside between 3 options:");
+            System.Console.WriteLine("1. Play a game move => **>**");
+            System.Console.WriteLine("2. Play a rendom move => R");
+            System.Console.WriteLine("3. Finish the game => Q");
             System.Console.WriteLine("For example if you want to move your piece from Af to Ae, write Af>Ae and then press enter");
             System.Console.WriteLine("When you ready to play press enter");
             Console.ReadLine();
             Console.Clear();
-
         }
 
         public static void ShowInrtudction()
@@ -36,9 +35,21 @@ namespace DamkaUI
 
         public static string AskForNextMove(Game i_game)
         {
-            System.Console.WriteLine($"{i_game.m_PlayerTurn.m_Opponent.Name} was : {i_game.m_LastMove}");
-            System.Console.WriteLine($"{i_game.m_PlayerTurn.Name} please enter your next Move");
+            if (i_game.EatInLastMove)
+            {
+                System.Console.WriteLine($"Congratulations {i_game.PlayerTurn.Name} ! You have another turn.");
+                System.Console.WriteLine();
+                System.Console.WriteLine($"{i_game.PlayerTurn.Name} your last move was: {i_game.LastMove}");
+            }
+            else
+            {
+                System.Console.WriteLine($"{i_game.PlayerTurn.Opponent.Name} was : {i_game.LastMove}");
+            }
+
+            System.Console.WriteLine($"{i_game.PlayerTurn.Name} please enter your next Move");
+
             string move = Console.ReadLine();
+
             return move;
         }
 
@@ -62,14 +73,12 @@ namespace DamkaUI
 
         public static void ShowBorad(Game o_game)
         {
-            Console.WriteLine(o_game.m_Board.ToString());
-            ShowLastMove(o_game);
-            ShowScore(o_game);
+            Console.WriteLine(o_game.Board.ToString());
         }
 
         public static void ShowLastMove(Game i_game)
         {
-            System.Console.WriteLine($"{i_game.m_PlayerTurn.m_Opponent.Name} was : {i_game.m_LastMove}");
+            System.Console.WriteLine($"{i_game.PlayerTurn.Opponent.Name} was : {i_game.LastMove}");
         }
 
         internal static void ShowLastMove(Player playerTurn, Board o_gameBorad, int turnCounter)
@@ -118,15 +127,25 @@ namespace DamkaUI
 
         public static string GetPlayerName(int i_PlayerNumber)
         {
-            System.Console.WriteLine("Hello welcome to the Checkers.");
-            System.Console.WriteLine($"Please enter the {i_PlayerNumber} name.");
-            string io_PlayerName = System.Console.ReadLine();
+            string playerNumber = "first player";
+
+            if (i_PlayerNumber == 2)
+            {
+                playerNumber = "second player";
+            }
+
+            Console.WriteLine("Hello welcome to the Checkers.");
+            System.Console.WriteLine($"Please enter the {playerNumber} name.");
+
+            string io_PlayerName = Console.ReadLine();
+
             Console.Clear();
 
-            while (io_PlayerName.Equals(""))
+            while ( io_PlayerName.Equals("") )
             {
                 System.Console.WriteLine("Your name cannot be empty");
                 System.Console.WriteLine("Please enter a valid name and press enter.");
+
                 io_PlayerName = System.Console.ReadLine();
             }
 
@@ -145,7 +164,7 @@ namespace DamkaUI
               o_BordSize = System.Console.ReadLine();
             }
 
-             return int.Parse(o_BordSize);
+            return int.Parse(o_BordSize);
         }
     }
 }

@@ -4,28 +4,57 @@ namespace CheckersGame
 {
     public class Board
     {
-        public Pice[,] m_Borad;
+        private Pice[,] m_Borad;
 
-        public int m_Size;
+        private readonly int m_Size;
 
-        internal Player m_Player1 = null;
+        private readonly Player m_Player1 = null;
 
-        internal Player m_Player2 = null;
+        private readonly Player m_Player2 = null;
 
-        public string m_LastMove = "This is the first move";
+        private string m_LastMove = "This is the first move";
 
-        public Board(int boradSize ,Player i_player1, Player i_player2)
+        private int m_TotalNumberOfPices;
+
+        public Board(int i_boradSize ,Player i_player1, Player i_player2)
         {
-            this.m_Borad = new Pice[boradSize, boradSize];
-            this.m_Size = boradSize;
+            this.m_Borad = new Pice[i_boradSize, i_boradSize];
+
+            this.m_Size = i_boradSize;
+
             this.m_Player1 = i_player1;
             this.m_Player2 = i_player2;
+
+            this.m_TotalNumberOfPices = m_Player1.Pices.Count + m_Player2.Pices.Count;
+
             this.initilaize();
         }
 
-        public bool HasPice(int row, int col)
+        public Pice[,] Borad => m_Borad;
+
+        public int Size => this.m_Size;
+
+        public Player Player1 => this.m_Player1;
+
+        public Player Player2 => this.m_Player2;
+
+        public string LastMove => this.m_LastMove;
+
+        public int TotalNumberOfPices => this.m_TotalNumberOfPices;
+
+        public bool HasPiceOrOutOfBoard(int row, int col)
         {
-            bool hasPice = this.m_Borad[row, col] != null;
+            bool hasPice = true;
+
+            if (row < 0 || row >= m_Size || col < 0 || col >= m_Size)
+            {
+                hasPice = false;
+            }
+            else
+            {
+                hasPice = this.m_Borad[row, col] != null;
+            }
+
             return hasPice;
         }
 
@@ -57,6 +86,18 @@ namespace CheckersGame
             this.m_Borad[sRow, sCol] = null;
         }
 
+        public bool OutOfBoard(int row, int col)
+        {
+            bool outOfBoard = false;
+
+            if (row < 0 || row >= this.m_Size || col < 0 || col >= this.m_Size)
+            {
+                outOfBoard = true;
+            }
+
+            return outOfBoard;
+        }
+
         public List<Pice> ListSoldiersInWay(int sRow, int sCol, int destRow, int destCol)
         {
             List<Pice> soldiesrsInTheWay = new List<Pice>();
@@ -66,7 +107,7 @@ namespace CheckersGame
 
             if (sRow == destRow)
             {
-                for (currentCol = sCol + UpOrDown(sCol,destCol); currentCol < destCol; currentCol += UpOrDown(sCol, destCol))
+                for (currentCol = sCol + UpOrDown(sCol, destCol); currentCol < destCol; currentCol += UpOrDown(sCol, destCol))
                 {
                     soldiesrsInTheWay.Add(this.m_Borad[currentRow, currentCol]);
                 }
@@ -166,10 +207,10 @@ namespace CheckersGame
             {
                 for (int j = (i + 1) % 2; j < this.m_Size; j = j + 2)
                 {
-                    this.m_Player1.m_PicesList[piceNumber].Row = i;
-                    this.m_Player1.m_PicesList[piceNumber].Col = j;
+                    this.Player1.Pices[piceNumber].Row = i;
+                    this.Player1.Pices[piceNumber].Col = j;
 
-                    this.m_Borad[i, j] = this.m_Player1.m_PicesList[piceNumber++];
+                    this.m_Borad[i, j] = this.m_Player1.Pices[piceNumber++];
                 }
             }
 
@@ -179,10 +220,10 @@ namespace CheckersGame
             {
                 for (int j = (i + 1) % 2; j <= this.m_Size - 1; j = j + 2)
                 {
-                    this.m_Player2.m_PicesList[piceNumber].Row = i;
-                    this.m_Player2.m_PicesList[piceNumber].Col = j;
+                    this.Player2.Pices[piceNumber].Row = i;
+                    this.Player2.Pices[piceNumber].Col = j;
 
-                    this.m_Borad[i, j] = this.m_Player2.m_PicesList[piceNumber++];
+                    this.m_Borad[i, j] = this.Player2.Pices[piceNumber++];
                 }
             }
         }
@@ -191,13 +232,15 @@ namespace CheckersGame
         {
             this.m_Borad[pice.Row, pice.Col] = null;
 
-            if (m_Player1.TeamSymbols.Equals(pice.TeamSymbols))
+            this.m_TotalNumberOfPices--;
+
+            if (this.Player1.TeamSymbols.Equals(pice.TeamSymbols))
             {
-                m_Player1.m_PicesList.Remove(pice);
+                this.Player1.Pices.Remove(pice);
             }
             else
             {
-                m_Player2.m_PicesList.Remove(pice);
+                this.Player2.Pices.Remove(pice);
             }
         }
     }
