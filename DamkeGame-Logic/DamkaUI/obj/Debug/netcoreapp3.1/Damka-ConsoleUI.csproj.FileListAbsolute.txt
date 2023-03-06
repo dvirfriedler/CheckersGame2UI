@@ -1,0 +1,5 @@
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DamkaUI\obj\Debug\netcoreapp3.1\Damka-ConsoleUI.csproj.AssemblyReference.cache
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DamkaUI\obj\Debug\netcoreapp3.1\Damka-ConsoleUI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DamkaUI\obj\Debug\netcoreapp3.1\Damka-ConsoleUI.AssemblyInfoInputs.cache
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DamkaUI\obj\Debug\netcoreapp3.1\Damka-ConsoleUI.AssemblyInfo.cs
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DamkaUI\obj\Debug\netcoreapp3.1\Damka-ConsoleUI.csproj.CoreCompileInputs.cache
