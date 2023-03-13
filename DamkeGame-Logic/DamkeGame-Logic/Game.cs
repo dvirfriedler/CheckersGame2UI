@@ -60,6 +60,8 @@
 
         public bool EatInLastMove => this.m_EatInLastMove;
 
+        public int BoardSize => this.m_BoardSize;
+
         public bool PlayMove(string i_Move)
         {
             bool didMove = true;

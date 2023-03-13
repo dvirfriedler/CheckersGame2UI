@@ -10,3 +10,7 @@ C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DmakaWinFormUI\bin\Debug
 C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DmakaWinFormUI\bin\Debug\DmakaWinFormUI.pdb
 C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DmakaWinFormUI\obj\Debug\DmakaWinFormUI.exe
 C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DmakaWinFormUI\obj\Debug\DmakaWinFormUI.pdb
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DmakaWinFormUI\bin\Debug\DamkeGame-Logic.dll
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DmakaWinFormUI\obj\Debug\DmakaWinFormUI.csproj.CopyComplete
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DmakaWinFormUI\bin\Debug\Damke-Logic.dll
+C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\DmakaWinFormUI\bin\Debug\Damke-Logic.pdb

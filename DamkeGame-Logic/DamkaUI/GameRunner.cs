@@ -98,8 +98,8 @@
                 }
             }
 
-            Console.WriteLine("The game is over, press Enter to Exit");
-            Console.ReadLine();
+            ////Console.WriteLine("The game is over, press Enter to Exit");
+            ////Console.ReadLine();
         }
     }
 }

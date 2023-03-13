@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DamkaLogic;
+
 
 namespace DmakaWinFormUI
 {
@@ -130,7 +132,13 @@ namespace DmakaWinFormUI
 
         private void StartGameButton_Click(object sender, EventArgs e)
         {
-            new GameForm();
+            int test = 2;
+            Game game = new Game(m_Player1Name,m_Player2Name,m_BoardSize);
+
+            //GameForm gameForm = new GameForm(game);
+
+           // gameForm.Show();
+
         }
 
         private void SettingsForm_Load(object sender, EventArgs e)
