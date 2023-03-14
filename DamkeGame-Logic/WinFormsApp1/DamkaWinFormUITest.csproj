@@ -12,10 +12,4 @@
     <ProjectReference Include="..\DamkeGame-Logic\Damke-Logic.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="GameForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-  </ItemGroup>
-
 </Project>

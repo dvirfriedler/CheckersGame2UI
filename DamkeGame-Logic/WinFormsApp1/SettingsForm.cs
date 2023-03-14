@@ -30,13 +30,7 @@ namespace DmakaWinFormUITest
 
             ////TEST
             Game testGame = new Game();
-            GameForm gameForm = new GameForm(testGame);
-
-
-            gameForm.Show();
-            this.Hide();
-
-            
+            GameForm gameForm = new GameForm(testGame);            
 
         }
 

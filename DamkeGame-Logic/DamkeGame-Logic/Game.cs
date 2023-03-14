@@ -298,7 +298,7 @@
             return score;
         }
 
-        private string moveTupleToStringMove(List<Tuple<int, int>> i_MoveTupple)
+        public string moveTupleToStringMove(List<Tuple<int, int>> i_MoveTupple)
         {
             string move = string.Empty;
 

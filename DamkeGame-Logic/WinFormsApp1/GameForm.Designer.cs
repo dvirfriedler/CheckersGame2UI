@@ -28,42 +28,60 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.BoardPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.BoardPanel = new System.Windows.Forms.Panel();
+            this.ScorePlayer1Label = new System.Windows.Forms.Label();
+            this.ScorePlayer2Label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // BoardPanel
             // 
-            this.BoardPanel.ColumnCount = 2;
-            this.BoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.BoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.BoardPanel.Location = new System.Drawing.Point(205, 204);
-            this.BoardPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.BoardPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BoardPanel.Location = new System.Drawing.Point(0, 91);
             this.BoardPanel.Name = "BoardPanel";
-            this.BoardPanel.RowCount = 2;
-            this.BoardPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.BoardPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.BoardPanel.Size = new System.Drawing.Size(700, 700);
+            this.BoardPanel.Size = new System.Drawing.Size(900, 900);
             this.BoardPanel.TabIndex = 0;
+            // 
+            // ScorePlayer1Label
+            // 
+            this.ScorePlayer1Label.AutoSize = true;
+            this.ScorePlayer1Label.Location = new System.Drawing.Point(12, 28);
+            this.ScorePlayer1Label.Name = "ScorePlayer1Label";
+            this.ScorePlayer1Label.Size = new System.Drawing.Size(206, 32);
+            this.ScorePlayer1Label.TabIndex = 1;
+            this.ScorePlayer1Label.Text = "ScorePlayer1Label";
+            // 
+            // ScorePlayer2Label
+            // 
+            this.ScorePlayer2Label.AutoSize = true;
+            this.ScorePlayer2Label.Location = new System.Drawing.Point(264, 28);
+            this.ScorePlayer2Label.Name = "ScorePlayer2Label";
+            this.ScorePlayer2Label.Size = new System.Drawing.Size(206, 32);
+            this.ScorePlayer2Label.TabIndex = 2;
+            this.ScorePlayer2Label.Text = "ScorePlayer2Label";
             // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(974, 929);
+            this.ClientSize = new System.Drawing.Size(902, 995);
+            this.Controls.Add(this.ScorePlayer2Label);
+            this.Controls.Add(this.ScorePlayer1Label);
             this.Controls.Add(this.BoardPanel);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "GameForm";
             this.Text = "GameForm";
-            this.AutoSizeChanged += new System.EventHandler(this.GameForm_AutoSizeChanged);
             this.Load += new System.EventHandler(this.GameForm_Load);
-            this.Resize += new System.EventHandler(this.GameForm_Resize);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private TableLayoutPanel BoardPanel;
+        private Panel BoardPanel;
+        private Label ScorePlayer1Label;
+        private Label ScorePlayer2Label;
     }
 }
