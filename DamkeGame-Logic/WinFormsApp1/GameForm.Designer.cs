@@ -40,6 +40,7 @@
             this.BoardPanel.Name = "BoardPanel";
             this.BoardPanel.Size = new System.Drawing.Size(900, 900);
             this.BoardPanel.TabIndex = 0;
+            this.BoardPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.BoardPanel_Paint);
             // 
             // ScorePlayer1Label
             // 
