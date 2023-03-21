@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ljDlV2ncslo3xMKZjka03yLnfP7Gj4dn7mPHc5gFigqqq1Jt13J5Dc/YVvBmbA/rtKd5XpGZR79jT2qCe7puQA==",
+  "dgSpecHash": "d7OS1oGNe3Zcsliu8JxH5TUhZCBO5P+FAWjEeUNeBX6QncZaTNg2Fv+9vNzTkaHFjXtkO8salW0P2C6wZXFu/A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\WinFormsApp1\\DamkaWinFormUITest.csproj",
+  "projectFilePath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\WinFormsApp1\\CheckersWinFormUI.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

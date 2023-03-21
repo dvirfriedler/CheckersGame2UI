@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "CheckersWinFormUI/1.0.0": {
+        "dependencies": {
+          "Damke-Logic": "1.0.0"
+        },
+        "runtime": {
+          "CheckersWinFormUI.dll": {}
+        }
+      },
+      "Damke-Logic/1.0.0": {
+        "runtime": {
+          "Damke-Logic.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CheckersWinFormUI/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Damke-Logic/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

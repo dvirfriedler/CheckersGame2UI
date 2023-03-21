@@ -32,9 +32,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\WinFormsApp1\\DamkaWinFormUITest.csproj",
-      "projectName": "DamkaWinFormUITest",
-      "projectPath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\WinFormsApp1\\DamkaWinFormUITest.csproj",
+      "projectUniqueName": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\WinFormsApp1\\CheckersWinFormUI.csproj",
+      "projectName": "CheckersWinFormUI",
+      "projectPath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\WinFormsApp1\\CheckersWinFormUI.csproj",
       "packagesPath": "C:\\Users\\dvirf\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\WinFormsApp1\\obj\\",
       "projectStyle": "PackageReference",
