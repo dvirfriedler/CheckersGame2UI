@@ -12,4 +12,19 @@
     <ProjectReference Include="..\DamkeGame-Logic\Damke-Logic.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Photos\black-King.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Photos\black-sol.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Photos\white-king.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Photos\white-sol.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

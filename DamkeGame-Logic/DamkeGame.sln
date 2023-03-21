@@ -9,7 +9,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Damka-ConsoleUI", "DamkaUI\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DmakaWinFormUI", "DmakaWinFormUI\DmakaWinFormUI.csproj", "{37C635F2-7B82-4D5E-B920-9BA7335DC892}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DamkaWinFormUITest", "WinFormsApp1\DamkaWinFormUITest.csproj", "{9BADFD4C-3206-48A9-9D4D-DBCB77A8EA9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DamkaWinFormUITest", "WinFormsApp1\DamkaWinFormUITest.csproj", "{9BADFD4C-3206-48A9-9D4D-DBCB77A8EA9A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Properties", "Properties", "{BF406E9D-F97D-44A8-8ACC-BD8006BF2CA8}"
+	ProjectSection(SolutionItems) = preProject
+		Photos\black-King.png = Photos\black-King.png
+		Photos\black-sol.png = Photos\black-sol.png
+		Photos\black-white-checkers-board-game-260nw-1295130067.webp = Photos\black-white-checkers-board-game-260nw-1295130067.webp
+		Photos\white-king.png = Photos\white-king.png
+		Photos\white-sol.png = Photos\white-sol.png
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -48,43 +48,28 @@
 
                 playerTrun = game.PlayerTurn;
 
-                if (test)
+                currentMove = CheckersInterface.AskForNextMove(game);
+
+                switch (currentMove)
                 {
-                    game.PlayRandomMove();
-                }
-                else
-                {
-                    if (game.PlayerTurn.Name.Equals("PC"))
-                    {
+                    case "R":
+
                         game.PlayRandomMove();
-                    }
+                        break;
 
-                    else
-                    {
-                        currentMove = CheckersInterface.AskForNextMove(game);
+                    case "Q":
+                        qwit = true;
+                        break;
 
-                        switch (currentMove)
+                    default:
+
+                        while (!game.PlayMove(currentMove))
                         {
-                            case "R":
-
-                                game.PlayRandomMove();
-                                break;
-
-                            case "Q":
-                                qwit = true;
-                                break;
-
-                            default:
-
-                                while (!game.PlayMove(currentMove))
-                                {
-                                    CheckersInterface.NotAValidMove();
-                                    currentMove = CheckersInterface.AskForNextMove(game);
-                                }
-
-                                break;
+                            CheckersInterface.NotAValidMove();
+                            currentMove = CheckersInterface.AskForNextMove(game);
                         }
-                    }
+
+                        break;
                 }
 
                 if (game.GameIsOver())

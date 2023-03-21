@@ -31,6 +31,7 @@
             this.BoardPanel = new System.Windows.Forms.Panel();
             this.ScorePlayer1Label = new System.Windows.Forms.Label();
             this.ScorePlayer2Label = new System.Windows.Forms.Label();
+            this.buttonRandomeMove = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BoardPanel
@@ -45,7 +46,7 @@
             // ScorePlayer1Label
             // 
             this.ScorePlayer1Label.AutoSize = true;
-            this.ScorePlayer1Label.Location = new System.Drawing.Point(12, 28);
+            this.ScorePlayer1Label.Location = new System.Drawing.Point(12, 9);
             this.ScorePlayer1Label.Name = "ScorePlayer1Label";
             this.ScorePlayer1Label.Size = new System.Drawing.Size(206, 32);
             this.ScorePlayer1Label.TabIndex = 1;
@@ -54,17 +55,28 @@
             // ScorePlayer2Label
             // 
             this.ScorePlayer2Label.AutoSize = true;
-            this.ScorePlayer2Label.Location = new System.Drawing.Point(264, 28);
+            this.ScorePlayer2Label.Location = new System.Drawing.Point(12, 41);
             this.ScorePlayer2Label.Name = "ScorePlayer2Label";
             this.ScorePlayer2Label.Size = new System.Drawing.Size(206, 32);
             this.ScorePlayer2Label.TabIndex = 2;
             this.ScorePlayer2Label.Text = "ScorePlayer2Label";
+            // 
+            // buttonRandomeMove
+            // 
+            this.buttonRandomeMove.Location = new System.Drawing.Point(662, 21);
+            this.buttonRandomeMove.Name = "buttonRandomeMove";
+            this.buttonRandomeMove.Size = new System.Drawing.Size(212, 46);
+            this.buttonRandomeMove.TabIndex = 3;
+            this.buttonRandomeMove.Text = "Randome Move";
+            this.buttonRandomeMove.UseVisualStyleBackColor = true;
+            this.buttonRandomeMove.Click += new System.EventHandler(this.buttonRandomeMove_Click);
             // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(902, 995);
+            this.Controls.Add(this.buttonRandomeMove);
             this.Controls.Add(this.ScorePlayer2Label);
             this.Controls.Add(this.ScorePlayer1Label);
             this.Controls.Add(this.BoardPanel);
@@ -84,5 +96,6 @@
         private Panel BoardPanel;
         private Label ScorePlayer1Label;
         private Label ScorePlayer2Label;
+        private Button buttonRandomeMove;
     }
 }

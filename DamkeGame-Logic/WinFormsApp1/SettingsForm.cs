@@ -27,11 +27,6 @@ namespace DmakaWinFormUITest
         public SettingsForm()
         {
             InitializeComponent();
-
-            ////TEST
-            Game testGame = new Game();
-            GameForm gameForm = new GameForm(testGame);            
-
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -138,6 +133,7 @@ namespace DmakaWinFormUITest
         private void StartGameButton_Click(object sender, EventArgs e)
         {
             int test = 2;
+
             Game game = new Game(m_Player1Name, m_Player2Name, m_BoardSize);
 
             GameForm gameForm = new GameForm(game);

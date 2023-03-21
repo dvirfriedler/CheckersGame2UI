@@ -21,13 +21,18 @@ namespace DmakaWinFormUITest
 
         private Board m_Board = null;
 
-        private readonly Dictionary<Button, Tuple<int, int>> m_ButtonsLocations = new Dictionary<Button, Tuple<int, int>>();
+        private readonly Dictionary<Button, Tuple<int, int>> m_ButtonsLocations = new Dictionary<Button, Tuple<int, int>>(); //Item1 = col, Item2 = row
 
         private Button[,] _Buttons = null;
 
         private Button m_srcButton;
 
         private Button m_destButton;
+
+        private Button m_LastSrcButton;
+
+        private Button m_LastDestButton;
+
 
         public GameForm(Game i_Game)
         {
@@ -45,53 +50,92 @@ namespace DmakaWinFormUITest
 
             this.initCheckersBoard();
 
-            this.ShowBorad(i_Game);
+            this.ShowBorad();
 
             this.Show();
         }
+
+        private Button LastSrcButton
+        {
+            get => this.m_LastSrcButton;
+            set
+            {
+                if(m_LastSrcButton!= null)
+                {
+                    this.m_LastSrcButton.BackColor = Color.Black;
+
+                }
+                this.m_LastSrcButton = value;
+                this.m_LastSrcButton.BackColor = Color.Blue;
+
+            }
+        }
+
+        private Button LastDestButton
+        {
+            get => this.m_LastDestButton;
+            set
+            {
+                if(m_LastDestButton != null)
+                {
+                    this.m_LastDestButton.BackColor = Color.Black;
+                }
+                this.m_LastDestButton = value;
+                this.m_LastDestButton.BackColor = Color.Blue;
+            }
+        }
+
+
 
         private void GameForm_Load(object sender, EventArgs e)
         {
 
         }
 
-        public void ShowBorad(Game o_game)
+        public void ShowBorad()
         {
-            for (int row = 0; row <o_game.BoardSize; row++)
+            for (int row = 0; row <this.m_Game.BoardSize; row++)
             {
-                for (int col = 0; col < o_game.BoardSize; col++)
+                for (int col = 0; col < this.m_Game.BoardSize; col++)
                 {
-                    
-                    _Buttons[col, row].Text = o_game.Board.Borad[row, col] == null ? row.ToString()  + "," + col.ToString()  : o_game.Board.Borad[row, col].ToString();
                     setButtonPhoto(_Buttons[col, row]);
                 }
             }
+
+            ScorePlayer1Label.Text = this.m_Game.Player1.Name + " Score: " + this.m_Game.GetScore(this.m_Game.Player1).ToString();
+            ScorePlayer2Label.Text = this.m_Game.Player2.Name + " Score: " + this.m_Game.GetScore(this.m_Game.Player2).ToString();
 
             this.Show();
         }
 
         private void setButtonPhoto(Button i_button)
         {
-            switch (i_button.Text)
+            int col = this.m_ButtonsLocations[i_button].Item2;
+
+            int row = this.m_ButtonsLocations[i_button].Item1;
+
+            string piceSymbole = this.m_Game.Board.Borad[row, col] == null ? row.ToString() + "," + col.ToString() : this.m_Game.Board.Borad[row, col].ToString();
+
+            switch (piceSymbole)
             {
                 case "X":
-                    i_button.Image = Image.FromFile(@"C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\Photos\\black-sol.png");
+                    i_button.BackgroundImage = Image.FromFile("Photos/black-sol.png");
                     break;
 
                 case "O":
-                    i_button.Image = Image.FromFile(@"C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\Photos\white-sol.png");
+                    i_button.BackgroundImage = Image.FromFile("Photos/white-sol.png");
                     break;
 
                 case "K":
-                    i_button.Image = System.Drawing.Image.FromFile(@"C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\Photos\black-King.png");
+                    i_button.BackgroundImage = Image.FromFile("Photos/black-King.png");
                     break;
 
                 case "Q":
-                    i_button.Image = System.Drawing.Image.FromFile(@"C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\Photos\white-king.png");
+                    i_button.BackgroundImage = Image.FromFile("Photos/white-king.png");
                     break;
 
                 default:
-                    i_button.Image = null;
+                    i_button.BackgroundImage = null;
                     break;
 
             }
@@ -107,34 +151,40 @@ namespace DmakaWinFormUITest
                 {
                     Button squareButton = new Button();
 
-                    squareButton.Height = squareButton.Width = squareSize;
+                    Color buttonColor = (row + col) % 2 == 0 ? Color.White : Color.Black;
 
-                    squareButton.BackColor = (row + col) % 2 == 0 ? Color.White : Color.Black;
+                    Point buttonLocation = new Point(row * squareSize + this.m_BoardPanel.Location.X, col * squareSize + this.m_BoardPanel.Location.X);
 
-                    if(squareButton.BackColor == Color.White)
-                    {
-                        squareButton.Enabled = false;
-                    }
-
-                    squareButton.Click += Button_Click;
-
+                    setSquareButtonProperties(squareButton, squareSize, buttonColor, buttonLocation);
+                    
                     m_ButtonsLocations.Add(squareButton, new Tuple<int, int>(col, row));
 
                     this._Buttons[row, col] = squareButton; 
 
                     this.m_BoardPanel.Controls.Add(squareButton);
-
-                    squareButton.Location = new Point(row * squareSize + this.m_BoardPanel.Location.X, col * squareSize + this.m_BoardPanel.Location.X);
-
                 }
             }
-
 
             Button downLeftButton = this._Buttons[this.m_BoardSize - 1, this.m_BoardSize - 1];
 
             this.m_BoardPanel.BackColor = Color.Black;
 
             this.m_BoardPanel.Width = this.m_BoardPanel.Location.X + downLeftButton.Location.X + downLeftButton.Width;
+        }
+
+        private void setSquareButtonProperties(Button i_button,int i_size ,Color i_color,Point i_location)
+        {
+            i_button.Height = i_button.Width = i_size;
+
+            i_button.BackColor = i_color;
+
+            i_button.Enabled = i_button.BackColor == Color.Black;
+
+            i_button.BackgroundImageLayout = ImageLayout.Stretch;
+
+            i_button.Click += Button_Click;
+
+            i_button.Location = i_location;
         }
 
         private void Button_Click(object sender, EventArgs e)
@@ -152,17 +202,9 @@ namespace DmakaWinFormUITest
             {
                 i_button.BackColor = Color.DarkGray;
             }
-            else if (i_button.BackColor == Color.DarkGray)
-            {
-                i_button.BackColor = Color.Black;
-            }
-            else if (i_button.BackColor == Color.White)
-            {
-                i_button.BackColor = Color.Gray;
-            }
             else
             {
-                i_button.BackColor = Color.White;
+                i_button.BackColor = Color.Black;
             }
         }
 
@@ -194,23 +236,52 @@ namespace DmakaWinFormUITest
         }
 
 
-        private void playMove()
+        private void playMove(bool random = false)
         {
-            Tuple<int, int> srcTuple = this.m_ButtonsLocations[this.m_srcButton];
-            Tuple<int, int> destTuple = this.m_ButtonsLocations[this.m_destButton];
+            if (random)
+            {
+                this.m_Game.PlayRandomMove();
 
-            List<Tuple<int, int>> moveTuple = new List<Tuple<int, int>>() { srcTuple,destTuple};
+            }
+            else
+            {
+                Tuple<int, int> srcTuple = this.m_ButtonsLocations[this.m_srcButton];
+                Tuple<int, int> destTuple = this.m_ButtonsLocations[this.m_destButton];
 
-            string move = m_Game.moveTupleToStringMove(moveTuple);
+                List<Tuple<int, int>> moveTuple = new List<Tuple<int, int>>() { srcTuple, destTuple };
 
-            bool didmove = m_Game.PlayMove(move);
+                string move = m_Game.moveTupleToStringMove(moveTuple);
 
-            ShowBorad(m_Game);
+                bool didmove = m_Game.PlayMove(move);
+            }
+
+            string lastMove = this.m_Game.LastMove;
+
+            LastSrcButton = stringLocationToButton(lastMove.Substring(0, 2));
+
+            LastDestButton = stringLocationToButton(lastMove.Substring(3, 2));
+
+            ShowBorad();
         }
 
         private void BoardPanel_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void buttonRandomeMove_Click(object sender, EventArgs e)
+        {
+            this.playMove(true); //random = true
+        }
+
+        private Button stringLocationToButton(string i_location)
+        {
+            char[] locationCahrArray = i_location.ToCharArray();
+
+            int col = locationCahrArray[0] - (int)'A';
+            int row = locationCahrArray[1] - (int)'a';
+
+            return _Buttons[col, row];
         }
     }
 }

@@ -99,6 +99,11 @@
                 }
             }
 
+            if (this.PlayerTurn.Name.Equals("PC"))
+            {
+                this.PlayRandomMove();
+            }
+
             return didMove;
         }
 
@@ -245,7 +250,7 @@
             return valid;
         }
 
-        private List<int> CharToLocation(string i_Move)
+        public List<int> CharToLocation(string i_Move)
         {
             List<int> positions = new List<int>() { 0, 0, 0, 0 };
 
@@ -491,6 +496,10 @@
 
             while (!vaildMove)
             {
+                if(playerAvilableMoves.Count == 0)
+                {
+                    break;
+                }
                 string currentMove = playerAvilableMoves[rnd.Next(playerAvilableMoves.Count)];
                 if (!this.moveIsVaild(currentMove))
                 {
