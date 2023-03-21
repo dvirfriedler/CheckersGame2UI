@@ -1,4 +1,4 @@
-﻿namespace DamkaLogic
+﻿namespace CheckersLogic
 {
     using System;
     using System.Collections.Generic;

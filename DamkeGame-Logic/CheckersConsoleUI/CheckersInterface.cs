@@ -1,7 +1,7 @@
-﻿namespace DamkaLogic
+﻿namespace CheckersConsoleUI
 {
     using System;
-    using DamkaLogic;
+    using CheckersLogic;
 
     public static class CheckersInterface
     {

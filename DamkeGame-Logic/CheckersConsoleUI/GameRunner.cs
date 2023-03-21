@@ -1,7 +1,7 @@
-﻿namespace DamkaUI
+﻿namespace CheckersConsoleUI
 {
     using System;
-    using DamkaLogic;
+    using CheckersLogic;
 
     public static class GameRunner
     {

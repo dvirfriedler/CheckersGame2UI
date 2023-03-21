@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DamkaLogic;
+using CheckersLogic;
 
 namespace DmakaWinFormUITest
 {
@@ -15,15 +15,15 @@ namespace DmakaWinFormUITest
     {
         private Panel m_BoardPanel = null;
 
-        private Game m_Game = null;
+        private Game m_Game;
 
         private int m_BoardSize = 0;
 
-        private Board m_Board = null;
+        private Board m_Board;
 
         private readonly Dictionary<Button, Tuple<int, int>> m_ButtonsLocations = new Dictionary<Button, Tuple<int, int>>(); //Item1 = col, Item2 = row
 
-        private Button[,] _Buttons = null;
+        private Button[,] _Buttons;
 
         private Button m_srcButton;
 

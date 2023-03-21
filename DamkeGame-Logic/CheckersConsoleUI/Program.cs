@@ -1,4 +1,4 @@
-﻿namespace DamkaUI
+﻿namespace CheckersConsoleUI
 {
     internal class Program
     {
@@ -10,5 +10,4 @@
             }
         }
     }
-
 }

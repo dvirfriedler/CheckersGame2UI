@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DamkaLogic
+namespace CheckersLogic
 {
     public class Pice
     {

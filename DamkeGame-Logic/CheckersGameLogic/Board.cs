@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DamkaLogic
+namespace CheckersLogic
 {
     public class Board
     {

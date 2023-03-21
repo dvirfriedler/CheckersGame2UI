@@ -1,4 +1,5 @@
-using DamkaLogic;
+using CheckersLogic;
+
 namespace DmakaWinFormUITest
 {
     internal static class Program
