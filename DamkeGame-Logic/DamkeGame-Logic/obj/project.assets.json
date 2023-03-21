@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\DamkeGame-Logic\\Damke-Logic.csproj",
-      "projectName": "Damke-Logic",
-      "projectPath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\DamkeGame-Logic\\Damke-Logic.csproj",
+      "projectUniqueName": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\DamkeGame-Logic\\CheckersLogic.csproj",
+      "projectName": "CheckersLogic",
+      "projectPath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\DamkeGame-Logic\\CheckersLogic.csproj",
       "packagesPath": "C:\\Users\\dvirf\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\DamkeGame-Logic\\obj\\",
       "projectStyle": "PackageReference",
