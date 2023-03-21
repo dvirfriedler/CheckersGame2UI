@@ -22,3 +22,15 @@ C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\CheckersGameLogic\obj\De
 C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\CheckersGameLogic\obj\Debug\net6.0\refint\CheckersLogic.dll
 C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\CheckersGameLogic\obj\Debug\net6.0\CheckersLogic.pdb
 C:\Users\dvirf\source\repos\DamkaCounle\DamkeGame-Logic\CheckersGameLogic\obj\Debug\net6.0\ref\CheckersLogic.dll
+C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersGameLogic\bin\Debug\net6.0\CheckersLogic.deps.json
+C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersGameLogic\bin\Debug\net6.0\CheckersLogic.dll
+C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersGameLogic\bin\Debug\net6.0\CheckersLogic.pdb
+C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersGameLogic\obj\Debug\net6.0\CheckersLogic.csproj.AssemblyReference.cache
+C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersGameLogic\obj\Debug\net6.0\CheckersLogic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersGameLogic\obj\Debug\net6.0\CheckersLogic.AssemblyInfoInputs.cache
+C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersGameLogic\obj\Debug\net6.0\CheckersLogic.AssemblyInfo.cs
+C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersGameLogic\obj\Debug\net6.0\CheckersLogic.csproj.CoreCompileInputs.cache
+C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersGameLogic\obj\Debug\net6.0\CheckersLogic.dll
+C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersGameLogic\obj\Debug\net6.0\refint\CheckersLogic.dll
+C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersGameLogic\obj\Debug\net6.0\CheckersLogic.pdb
+C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersGameLogic\obj\Debug\net6.0\ref\CheckersLogic.dll

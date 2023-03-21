@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LbEMzQss0vnp8srFTTs/e4UP+xUT75oZb+gisKk3n2o6q+k8/gUTH3nmPg4dN6LW0kj0XclCZwhkRIIjWk1pRw==",
+  "dgSpecHash": "yFvdsEA4ybELnDg1Tvsb3vFkVUszkYc6t5DuDg++IwTPXb0mcOWx0XkbVgETxDbB0e9wLeYibXxXKOTfLnS84w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\CheckersGameLogic\\CheckersLogic.csproj",
+  "projectFilePath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\CheckersGame\\CheckersGameLogic\\CheckersLogic.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

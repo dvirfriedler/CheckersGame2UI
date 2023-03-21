@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "R/TAPj2JsbKw7xGJqoQgBjpgnlQ8mPx3DrnjmN1uUZl6PmTGlXfG64liTgEs9IpVVqeRvzUHntjlh0FQoyIybA==",
+  "dgSpecHash": "Kw9g8ktyhJ+z7BxSAvxE2WRDuvG1zQrmpOZWu7v7IeAIMuYRT7QImuaVPoo8bZayAs948G2uhCfL+3Q3Vv4Phg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\CheckersConsoleUI\\CheckersConsoleUI.csproj",
+  "projectFilePath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\CheckersGame\\CheckersConsoleUI\\CheckersConsoleUI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dvirf\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.435\\stylecop.analyzers.1.2.0-beta.435.nupkg.sha512",
     "C:\\Users\\dvirf\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.435\\stylecop.analyzers.unstable.1.2.0.435.nupkg.sha512"

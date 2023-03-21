@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\CheckersWinFormUI\\CheckersWinFormUI.csproj": {}
+    "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\CheckersGame\\CheckersWinFormUI\\CheckersWinFormUI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\CheckersGameLogic\\CheckersLogic.csproj": {
+    "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\CheckersGame\\CheckersGameLogic\\CheckersLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\CheckersGameLogic\\CheckersLogic.csproj",
+        "projectUniqueName": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\CheckersGame\\CheckersGameLogic\\CheckersLogic.csproj",
         "projectName": "CheckersLogic",
-        "projectPath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\CheckersGameLogic\\CheckersLogic.csproj",
+        "projectPath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\CheckersGame\\CheckersGameLogic\\CheckersLogic.csproj",
         "packagesPath": "C:\\Users\\dvirf\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\CheckersGameLogic\\obj\\",
+        "outputPath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\CheckersGame\\CheckersGameLogic\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "configFilePaths": [
@@ -59,14 +59,14 @@
         }
       }
     },
-    "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\CheckersWinFormUI\\CheckersWinFormUI.csproj": {
+    "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\CheckersGame\\CheckersWinFormUI\\CheckersWinFormUI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\CheckersWinFormUI\\CheckersWinFormUI.csproj",
+        "projectUniqueName": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\CheckersGame\\CheckersWinFormUI\\CheckersWinFormUI.csproj",
         "projectName": "CheckersWinFormUI",
-        "projectPath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\CheckersWinFormUI\\CheckersWinFormUI.csproj",
+        "projectPath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\CheckersGame\\CheckersWinFormUI\\CheckersWinFormUI.csproj",
         "packagesPath": "C:\\Users\\dvirf\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\CheckersWinFormUI\\obj\\",
+        "outputPath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\CheckersGame\\CheckersWinFormUI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dvirf\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -83,8 +83,8 @@
           "net6.0-windows7.0": {
             "targetAlias": "net6.0-windows",
             "projectReferences": {
-              "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\CheckersGameLogic\\CheckersLogic.csproj": {
-                "projectPath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\DamkeGame-Logic\\CheckersGameLogic\\CheckersLogic.csproj"
+              "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\CheckersGame\\CheckersGameLogic\\CheckersLogic.csproj": {
+                "projectPath": "C:\\Users\\dvirf\\source\\repos\\DamkaCounle\\CheckersGame\\CheckersGameLogic\\CheckersLogic.csproj"
               }
             }
           }
