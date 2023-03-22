@@ -1,4 +1,4 @@
-﻿namespace DmakaWinFormUITest
+﻿namespace CheckersWinFormUI
 {
     partial class SettingsForm
     {

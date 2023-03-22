@@ -8,9 +8,9 @@ namespace CheckersLogic
 
         private readonly int m_Size;
 
-        private readonly Player m_Player1 = null;
+        private readonly Player m_Player1;
 
-        private readonly Player m_Player2 = null;
+        private readonly Player m_Player2;
 
         private string m_LastMove = "This is the first move";
 

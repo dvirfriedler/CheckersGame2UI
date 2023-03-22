@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using CheckersLogic;
 
 
-namespace DmakaWinFormUITest
+namespace CheckersWinFormUI
 {
     public partial class SettingsForm : Form
     {
@@ -19,10 +19,6 @@ namespace DmakaWinFormUITest
         private string m_Player2Name = "PC";
 
         private int m_BoardSize = 0;
-
-
-
-
 
         public SettingsForm()
         {

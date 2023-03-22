@@ -1,4 +1,4 @@
-﻿namespace DmakaWinFormUITest
+﻿namespace CheckersWinFormUI
 {
     partial class GameForm
     {
@@ -32,6 +32,7 @@
             this.ScorePlayer1Label = new System.Windows.Forms.Label();
             this.ScorePlayer2Label = new System.Windows.Forms.Label();
             this.buttonRandomeMove = new System.Windows.Forms.Button();
+            this.buttonFinishGame = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BoardPanel
@@ -71,11 +72,23 @@
             this.buttonRandomeMove.UseVisualStyleBackColor = true;
             this.buttonRandomeMove.Click += new System.EventHandler(this.buttonRandomeMove_Click);
             // 
+            // buttonFinishGame
+            // 
+            this.buttonFinishGame.BackgroundImage = global::CheckersWinFormUI.Properties.Resources.FinishGamePhoto;
+            this.buttonFinishGame.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buttonFinishGame.Location = new System.Drawing.Point(397, 0);
+            this.buttonFinishGame.Name = "buttonFinishGame";
+            this.buttonFinishGame.Size = new System.Drawing.Size(259, 89);
+            this.buttonFinishGame.TabIndex = 4;
+            this.buttonFinishGame.UseVisualStyleBackColor = true;
+            this.buttonFinishGame.Click += new System.EventHandler(this.buttonFinishGame_Click);
+            // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(902, 995);
+            this.Controls.Add(this.buttonFinishGame);
             this.Controls.Add(this.buttonRandomeMove);
             this.Controls.Add(this.ScorePlayer2Label);
             this.Controls.Add(this.ScorePlayer1Label);
@@ -97,5 +110,6 @@
         private Label ScorePlayer1Label;
         private Label ScorePlayer2Label;
         private Button buttonRandomeMove;
+        private Button buttonFinishGame;
     }
 }

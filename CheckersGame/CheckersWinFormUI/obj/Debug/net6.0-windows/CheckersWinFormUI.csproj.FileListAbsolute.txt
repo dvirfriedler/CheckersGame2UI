@@ -60,8 +60,6 @@ C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersWinFormUI\bin\Debug
 C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersWinFormUI\bin\Debug\net6.0-windows\CheckersLogic.dll
 C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersWinFormUI\bin\Debug\net6.0-windows\CheckersLogic.pdb
 C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersWinFormUI\obj\Debug\net6.0-windows\CheckersWinFormUI.csproj.AssemblyReference.cache
-C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersWinFormUI\obj\Debug\net6.0-windows\DmakaWinFormUITest.GameForm.resources
-C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersWinFormUI\obj\Debug\net6.0-windows\DmakaWinFormUITest.SettingsForm.resources
 C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersWinFormUI\obj\Debug\net6.0-windows\CheckersWinFormUI.csproj.GenerateResource.cache
 C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersWinFormUI\obj\Debug\net6.0-windows\CheckersWinFormUI.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersWinFormUI\obj\Debug\net6.0-windows\CheckersWinFormUI.AssemblyInfoInputs.cache
@@ -73,3 +71,7 @@ C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersWinFormUI\obj\Debug
 C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersWinFormUI\obj\Debug\net6.0-windows\CheckersWinFormUI.pdb
 C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersWinFormUI\obj\Debug\net6.0-windows\CheckersWinFormUI.genruntimeconfig.cache
 C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersWinFormUI\obj\Debug\net6.0-windows\ref\CheckersWinFormUI.dll
+C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersWinFormUI\obj\Debug\net6.0-windows\CheckersWinFormUI.FinishGameForm.resources
+C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersWinFormUI\obj\Debug\net6.0-windows\CheckersWinFormUI.Properties.Resources.resources
+C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersWinFormUI\obj\Debug\net6.0-windows\CheckersWinFormUI.GameForm.resources
+C:\Users\dvirf\source\repos\DamkaCounle\CheckersGame\CheckersWinFormUI\obj\Debug\net6.0-windows\CheckersWinFormUI.SettingsForm.resources

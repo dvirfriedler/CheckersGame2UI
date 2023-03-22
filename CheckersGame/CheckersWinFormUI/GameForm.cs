@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CheckersLogic;
 
-namespace DmakaWinFormUITest
+namespace CheckersWinFormUI
 {
     public partial class GameForm : Form
     {
@@ -282,6 +282,12 @@ namespace DmakaWinFormUITest
             int row = locationCahrArray[1] - (int)'a';
 
             return _Buttons[col, row];
+        }
+
+        private void buttonFinishGame_Click(object sender, EventArgs e)
+        {
+            Form formGameOver = new FinishGameForm();
+            formGameOver.Show();
         }
     }
 }
